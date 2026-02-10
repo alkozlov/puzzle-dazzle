@@ -11,7 +11,7 @@
 - Share via social networks/messengers
 
 ### Tech Stack
-- **.NET 10** with **C#**
+- **.NET 9** with **C#**
 - **MAUI** (Multi-platform App UI) - Android only for POC
 - Target: Android API 28+ (Android 9.0+)
 
@@ -21,52 +21,53 @@
 
 ## Development Environment
 
-**Setup: WSL + Windows Android Studio**
+**Setup: WSL (source code) + Windows (build & run)**
 
-The project code lives in WSL, but Android emulator runs on Windows.
+Source code lives in WSL, but build/run operations are executed from Windows PowerShell.
 
 ### Prerequisites
-1. **WSL**: .NET 10 SDK with MAUI workloads
-2. **Windows**: Android Studio with SDK and emulator
+1. **WSL**: Git for version control, text editor/IDE
+2. **Windows**: 
+   - .NET 9 SDK with MAUI workload (`dotnet workload install maui`)
+   - Android Studio with SDK and emulator
+   - PowerShell or Command Prompt
 
-### Connecting WSL to Windows Android Emulator
+### Workflow
 
-1. Start Android emulator in Android Studio (Windows)
-2. In WSL, connect to Windows ADB:
-   ```bash
-   # Get Windows host IP
-   export WSL_HOST=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+1. **Edit code**: Work in WSL at `/home/<USERNAME>/projects/puzzle-dazzle`
+2. **Build/Run**: From Windows PowerShell, access WSL filesystem:
+   ```powershell
+   # Navigate to project (replace <USERNAME> with your WSL username)
+   cd \\wsl$\Ubuntu\home\<USERNAME>\projects\puzzle-dazzle
    
-   # Connect to Windows ADB server
-   adb connect $WSL_HOST:5555
-   
-   # Or kill local adb and use Windows adb
-   adb kill-server
-   export ADB_SERVER_SOCKET=tcp:$WSL_HOST:5037
+   # Or use the shorter wsl.localhost path
+   cd \\wsl.localhost\Ubuntu\home\<USERNAME>\projects\puzzle-dazzle
    ```
 
-3. Verify connection:
-   ```bash
-   adb devices  # Should show emulator
-   ```
+### Build Commands (Windows PowerShell)
 
-### Environment Variables (WSL ~/.bashrc)
-```bash
-export ANDROID_HOME=/mnt/c/Users/<USERNAME>/AppData/Local/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-```
-
-### Build Commands
-```bash
+```powershell
 # Build for Android
-dotnet build -f net10.0-android
+dotnet build -f net9.0-android
 
 # Run on connected device/emulator
-dotnet build -f net10.0-android -t:Run
+dotnet build -f net9.0-android -t:Run
 
 # Build release APK
-dotnet publish -f net10.0-android -c Release
+dotnet publish -f net9.0-android -c Release
 ```
+
+### Running the Emulator
+
+1. Start Android emulator from Android Studio (Windows)
+2. Verify emulator is running: `adb devices`
+3. Run the app from PowerShell: `dotnet build -f net9.0-android -t:Run`
+
+### Notes
+
+- No ADB bridging required (everything runs on Windows)
+- Android SDK on Windows is automatically detected by .NET MAUI
+- Visual Studio on Windows can directly edit files on WSL filesystem via `\\wsl$\` path
 
 ### Project Structure (planned)
 ```
