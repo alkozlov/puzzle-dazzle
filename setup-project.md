@@ -8,7 +8,7 @@ Since MAUI templates are only available on Windows (where the workload is instal
 
 Navigate to the project directory:
 ```powershell
-cd \\wsl.localhost\Ubuntu\home\akazlou\projects\puzzle-dazzle
+cd \\wsl.localhost\Ubuntu-24.04\home\akazlou\projects\puzzle-dazzle
 ```
 
 ### Step 2: Create MAUI App Project
