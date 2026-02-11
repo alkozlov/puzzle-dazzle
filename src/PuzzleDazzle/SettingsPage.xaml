@@ -83,7 +83,7 @@
                                    FontAttributes="Bold"
                                    HorizontalTextAlignment="Center"
                                    TextColor="{DynamicResource Gray900}" />
-                            <Label Text="Black & White"
+                            <Label Text="Black &amp; White"
                                    FontSize="12"
                                    HorizontalTextAlignment="Center"
                                    TextColor="{DynamicResource Gray600}" />
