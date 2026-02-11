@@ -65,15 +65,18 @@
                       Margin="0,10,0,0">
                     
                     <!-- Classic Style -->
-                    <Frame Grid.Column="0"
-                           x:Name="ClassicFrame"
-                           BorderColor="{DynamicResource Primary}"
-                           CornerRadius="10"
-                           Padding="10"
-                           HasShadow="True">
-                        <Frame.GestureRecognizers>
+                    <Border Grid.Column="0"
+                            x:Name="ClassicBorder"
+                            Stroke="{DynamicResource Primary}"
+                            StrokeThickness="2"
+                            BackgroundColor="White"
+                            Padding="10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnClassicStyleTapped" />
-                        </Frame.GestureRecognizers>
+                        </Border.GestureRecognizers>
                         <StackLayout Spacing="5">
                             <BoxView HeightRequest="100"
                                      BackgroundColor="White"
@@ -88,18 +91,21 @@
                                    HorizontalTextAlignment="Center"
                                    TextColor="{DynamicResource Gray600}" />
                         </StackLayout>
-                    </Frame>
+                    </Border>
 
                     <!-- Soft Style -->
-                    <Frame Grid.Column="1"
-                           x:Name="SoftFrame"
-                           BorderColor="{DynamicResource Gray300}"
-                           CornerRadius="10"
-                           Padding="10"
-                           HasShadow="True">
-                        <Frame.GestureRecognizers>
+                    <Border Grid.Column="1"
+                            x:Name="SoftBorder"
+                            Stroke="{DynamicResource Gray300}"
+                            StrokeThickness="2"
+                            BackgroundColor="White"
+                            Padding="10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnSoftStyleTapped" />
-                        </Frame.GestureRecognizers>
+                        </Border.GestureRecognizers>
                         <StackLayout Spacing="5">
                             <BoxView HeightRequest="100"
                                      BackgroundColor="#F0F0F0"
@@ -114,7 +120,7 @@
                                    HorizontalTextAlignment="Center"
                                    TextColor="{DynamicResource Gray600}" />
                         </StackLayout>
-                    </Frame>
+                    </Border>
                 </Grid>
             </StackLayout>
 

@@ -30,10 +30,13 @@
               Margin="0,20,0,20">
             
             <!-- Placeholder for maze visualization -->
-            <Frame BorderColor="{DynamicResource Gray300}"
-                   CornerRadius="10"
-                   Padding="0"
-                   HasShadow="True">
+            <Border Stroke="{DynamicResource Gray300}"
+                    StrokeThickness="2"
+                    BackgroundColor="White"
+                    Padding="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
                 <Grid BackgroundColor="White">
                     <!-- This will be replaced with actual maze rendering -->
                     <Label Text="Maze will be displayed here"
@@ -42,7 +45,7 @@
                            VerticalTextAlignment="Center"
                            TextColor="{DynamicResource Gray400}" />
                 </Grid>
-            </Frame>
+            </Border>
         </Grid>
 
         <!-- Action Buttons -->

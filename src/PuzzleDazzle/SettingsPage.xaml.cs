@@ -55,13 +55,17 @@ public partial class SettingsPage : ContentPage
 		// Update border color to show selected style
 		if (_selectedStyle == "Classic")
 		{
-			ClassicFrame.BorderColor = Color.FromArgb("#512BD4"); // Primary color
-			SoftFrame.BorderColor = Color.FromArgb("#DDD");
+			ClassicBorder.Stroke = Color.FromArgb("#512BD4"); // Primary color
+			ClassicBorder.StrokeThickness = 3;
+			SoftBorder.Stroke = Color.FromArgb("#DDD");
+			SoftBorder.StrokeThickness = 2;
 		}
 		else
 		{
-			ClassicFrame.BorderColor = Color.FromArgb("#DDD");
-			SoftFrame.BorderColor = Color.FromArgb("#512BD4"); // Primary color
+			ClassicBorder.Stroke = Color.FromArgb("#DDD");
+			ClassicBorder.StrokeThickness = 2;
+			SoftBorder.Stroke = Color.FromArgb("#512BD4"); // Primary color
+			SoftBorder.StrokeThickness = 3;
 		}
 	}
 
