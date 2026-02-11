@@ -17,11 +17,19 @@ public partial class GenerationPage : ContentPage
 	protected override void OnAppearing()
 	{
 		base.OnAppearing();
-		// Start maze generation when page appears
-		StartMazeGeneration();
+		// Don't auto-generate - user must press Start button
+		ShowWelcomeState();
 	}
 
-	private async void StartMazeGeneration()
+	private void ShowWelcomeState()
+	{
+		// Show welcome message, hide everything else
+		ProgressSection.IsVisible = false;
+		MazeDisplayArea.IsVisible = false;
+		WelcomeSection.IsVisible = true;
+	}
+
+	public async void StartMazeGeneration()
 	{
 		// Show progress indicator
 		ProgressSection.IsVisible = true;
@@ -67,8 +75,10 @@ public partial class GenerationPage : ContentPage
 			// Hide progress, show maze
 			ProgressSection.IsVisible = false;
 			MazeDisplayArea.IsVisible = true;
+			
+			// Enable Save and Print buttons
 			SaveButton.IsEnabled = true;
-			RetryButton.IsEnabled = true;
+			PrintButton.IsEnabled = true;
 		}
 		catch (Exception ex)
 		{
@@ -83,15 +93,15 @@ public partial class GenerationPage : ContentPage
 		await DisplayAlert("Save", "Maze will be saved as PNG (coming soon)", "OK");
 	}
 
-	private void OnRetryClicked(object? sender, EventArgs e)
+	private async void OnPrintClicked(object? sender, EventArgs e)
 	{
-		// Regenerate maze with same settings
-		StartMazeGeneration();
+		// TODO: Implement maze printing functionality
+		await DisplayAlert("Print", "Maze will be printed (coming soon)", "OK");
 	}
 
-	private async void OnBackClicked(object? sender, EventArgs e)
+	private async void OnSettingsClicked(object? sender, EventArgs e)
 	{
-		// Navigate back to main page
-		await Shell.Current.GoToAsync("..");
+		// Navigate to Settings Screen
+		await Shell.Current.GoToAsync(nameof(SettingsPage));
 	}
 }

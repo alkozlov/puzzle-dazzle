@@ -86,7 +86,7 @@
             </StackLayout>
 
             <!-- Back Button -->
-            <Button Text="Back to Main"
+            <Button Text="Back"
                     FontSize="18"
                     HeightRequest="50"
                     CornerRadius="25"
