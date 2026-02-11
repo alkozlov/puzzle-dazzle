@@ -1,8 +1,8 @@
-namespace PuzzleDazzle.Services;
+namespace PuzzleDazzle.Core.Services;
 
 /// <summary>
 /// Tracks daily maze generation usage for free tier enforcement.
-/// Uses MAUI Preferences for persistent storage.
+/// Uses IPreferencesService for persistent storage (testable without MAUI).
 /// </summary>
 public class UsageTrackingService
 {
@@ -11,10 +11,12 @@ public class UsageTrackingService
 	public const int DailyFreeLimit = 5;
 
 	private readonly ISubscriptionService _subscriptionService;
+	private readonly IPreferencesService _preferences;
 
-	public UsageTrackingService(ISubscriptionService subscriptionService)
+	public UsageTrackingService(ISubscriptionService subscriptionService, IPreferencesService preferences)
 	{
 		_subscriptionService = subscriptionService;
+		_preferences = preferences;
 	}
 
 	/// <summary>
@@ -23,7 +25,7 @@ public class UsageTrackingService
 	public int GetTodayCount()
 	{
 		ResetIfNewDay();
-		return Preferences.Get(GenerationCountKey, 0);
+		return _preferences.GetInt(GenerationCountKey, 0);
 	}
 
 	/// <summary>
@@ -52,9 +54,9 @@ public class UsageTrackingService
 	public void RecordGeneration()
 	{
 		ResetIfNewDay();
-		var count = Preferences.Get(GenerationCountKey, 0);
-		Preferences.Set(GenerationCountKey, count + 1);
-		Preferences.Set(LastGenerationDateKey, DateTime.Today.ToString("yyyy-MM-dd"));
+		var count = _preferences.GetInt(GenerationCountKey, 0);
+		_preferences.SetInt(GenerationCountKey, count + 1);
+		_preferences.SetString(LastGenerationDateKey, DateTime.Today.ToString("yyyy-MM-dd"));
 	}
 
 	/// <summary>
@@ -62,13 +64,13 @@ public class UsageTrackingService
 	/// </summary>
 	private void ResetIfNewDay()
 	{
-		var lastDate = Preferences.Get(LastGenerationDateKey, string.Empty);
+		var lastDate = _preferences.GetString(LastGenerationDateKey, string.Empty);
 		var today = DateTime.Today.ToString("yyyy-MM-dd");
 
 		if (lastDate != today)
 		{
-			Preferences.Set(GenerationCountKey, 0);
-			Preferences.Set(LastGenerationDateKey, today);
+			_preferences.SetInt(GenerationCountKey, 0);
+			_preferences.SetString(LastGenerationDateKey, today);
 		}
 	}
 }

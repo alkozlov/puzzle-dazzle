@@ -1,5 +1,6 @@
 using PuzzleDazzle.Core.Models;
 using PuzzleDazzle.Core.Generation;
+using PuzzleDazzle.Core.Services;
 using PuzzleDazzle.Services;
 using PuzzleDazzle.Rendering;
 
@@ -19,7 +20,7 @@ public partial class GenerationPage : ContentPage
 		_generator = new MazeGenerator();
 		_exportService = new MazeExportService(new ClassicMazeRenderer(), null!);
 		_subscriptionService = new MockSubscriptionService();
-		_usageTracking = new UsageTrackingService(_subscriptionService);
+		_usageTracking = new UsageTrackingService(_subscriptionService, new MauiPreferencesService());
 	}
 
 	protected override void OnAppearing()

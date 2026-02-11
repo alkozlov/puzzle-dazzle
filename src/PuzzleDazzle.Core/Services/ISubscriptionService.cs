@@ -1,4 +1,4 @@
-namespace PuzzleDazzle.Services;
+namespace PuzzleDazzle.Core.Services;
 
 /// <summary>
 /// Service for checking user subscription status.
