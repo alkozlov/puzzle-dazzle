@@ -1,5 +1,7 @@
 using PuzzleDazzle.Core.Models;
 using PuzzleDazzle.Core.Generation;
+using PuzzleDazzle.Services;
+using PuzzleDazzle.Rendering;
 
 namespace PuzzleDazzle;
 
@@ -7,11 +9,13 @@ public partial class GenerationPage : ContentPage
 {
 	private Maze? _currentMaze;
 	private readonly MazeGenerator _generator;
+	private readonly MazeExportService _exportService;
 
 	public GenerationPage()
 	{
 		InitializeComponent();
 		_generator = new MazeGenerator();
+		_exportService = new MazeExportService(new ClassicMazeRenderer());
 	}
 
 	protected override void OnAppearing()
@@ -93,14 +97,50 @@ public partial class GenerationPage : ContentPage
 
 	private async void OnSaveClicked(object? sender, EventArgs e)
 	{
-		// TODO: Implement maze saving functionality
-		await DisplayAlert("Save", "Maze will be saved as PNG (coming soon)", "OK");
+		if (_currentMaze == null)
+		{
+			await DisplayAlert("Error", "No maze to save", "OK");
+			return;
+		}
+
+		try
+		{
+			// Save the maze
+			var filePath = await _exportService.SaveToFileAsync(_currentMaze);
+			
+			// Show success message
+			await DisplayAlert("Success", $"Maze saved to:\n{filePath}", "OK");
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Error", $"Failed to save maze: {ex.Message}", "OK");
+		}
 	}
 
 	private async void OnShareClicked(object? sender, EventArgs e)
 	{
-		// TODO: Implement maze sharing functionality
-		await DisplayAlert("Share", "Maze will be shared (coming soon)", "OK");
+		if (_currentMaze == null)
+		{
+			await DisplayAlert("Error", "No maze to share", "OK");
+			return;
+		}
+
+		try
+		{
+			// Save maze to temp file
+			var tempFilePath = await _exportService.SaveToTempFileAsync(_currentMaze);
+			
+			// Share the file
+			await Share.Default.RequestAsync(new ShareFileRequest
+			{
+				Title = "Share Maze",
+				File = new ShareFile(tempFilePath)
+			});
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Error", $"Failed to share maze: {ex.Message}", "OK");
+		}
 	}
 
 	private async void OnSettingsClicked(object? sender, EventArgs e)
