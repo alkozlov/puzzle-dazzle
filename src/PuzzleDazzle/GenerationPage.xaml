@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:PuzzleDazzle.Controls"
+             xmlns:local="clr-namespace:PuzzleDazzle"
              x:Class="PuzzleDazzle.GenerationPage"
              Title="Maze Generation"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
@@ -82,8 +83,9 @@
                 
                 <!-- Settings Button (Left) -->
                 <Button Grid.Column="0"
-                        Text="⚙️"
-                        FontSize="28"
+                        Text="{x:Static local:FontAwesomeIcons.Gear}"
+                        FontFamily="FontAwesome"
+                        FontSize="24"
                         WidthRequest="56"
                         HeightRequest="56"
                         CornerRadius="28"
@@ -99,8 +101,9 @@
                 <!-- Save Button -->
                 <Button Grid.Column="2"
                         x:Name="SaveButton"
-                        Text="💾"
-                        FontSize="28"
+                        Text="{x:Static local:FontAwesomeIcons.FloppyDisk}"
+                        FontFamily="FontAwesome"
+                        FontSize="24"
                         WidthRequest="56"
                         HeightRequest="56"
                         CornerRadius="28"
@@ -117,8 +120,9 @@
                 
                 <!-- Generate Button (Center, Primary, Larger) -->
                 <Button Grid.Column="4"
-                        Text="▶️"
-                        FontSize="36"
+                        Text="{x:Static local:FontAwesomeIcons.Play}"
+                        FontFamily="FontAwesome"
+                        FontSize="32"
                         WidthRequest="72"
                         HeightRequest="72"
                         CornerRadius="36"
@@ -141,8 +145,9 @@
                 <!-- Share Button (Right) -->
                 <Button Grid.Column="6"
                         x:Name="ShareButton"
-                        Text="📤"
-                        FontSize="28"
+                        Text="{x:Static local:FontAwesomeIcons.ShareNodes}"
+                        FontFamily="FontAwesome"
+                        FontSize="24"
                         WidthRequest="56"
                         HeightRequest="56"
                         CornerRadius="28"

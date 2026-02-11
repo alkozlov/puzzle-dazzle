@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PuzzleDazzle"
              x:Class="PuzzleDazzle.SettingsPage"
              Title="Settings"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
@@ -46,54 +47,19 @@
                 </Picker>
             </StackLayout>
 
-            <!-- Visual Style Section -->
-            <StackLayout Spacing="10">
-                <Label Text="Visual Style"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       TextColor="{DynamicResource Primary}" />
-                
-                <Label Text="Classic black &amp; white style"
-                       FontSize="14"
-                       TextColor="{DynamicResource Gray600}" />
-
-                <!-- Classic Style Display (read-only) -->
-                <Border Stroke="{DynamicResource Primary}"
-                        StrokeThickness="2"
-                        BackgroundColor="White"
-                        Padding="10"
-                        HorizontalOptions="Center"
-                        WidthRequest="200"
-                        Margin="0,10,0,0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10" />
-                    </Border.StrokeShape>
-                    <StackLayout Spacing="5">
-                        <BoxView HeightRequest="100"
-                                 BackgroundColor="White"
-                                 CornerRadius="5" />
-                        <Label Text="Classic"
-                               FontSize="16"
-                               FontAttributes="Bold"
-                               HorizontalTextAlignment="Center"
-                               TextColor="{DynamicResource Gray900}" />
-                        <Label Text="Black &amp; White"
-                               FontSize="12"
-                               HorizontalTextAlignment="Center"
-                               TextColor="{DynamicResource Gray600}" />
-                    </StackLayout>
-                </Border>
-            </StackLayout>
-
             <!-- Back Button -->
-            <Button Text="Back"
-                    FontSize="18"
-                    HeightRequest="50"
-                    CornerRadius="25"
+            <Button Text="{x:Static local:FontAwesomeIcons.ArrowLeft}"
+                    FontFamily="FontAwesome"
+                    FontSize="20"
+                    WidthRequest="56"
+                    HeightRequest="56"
+                    CornerRadius="28"
                     BackgroundColor="{DynamicResource Secondary}"
                     TextColor="White"
                     Clicked="OnBackClicked"
-                    Margin="0,20,0,0" />
+                    HorizontalOptions="Center"
+                    Margin="0,20,0,0"
+                    SemanticProperties.Hint="Go back to maze generation" />
 
         </VerticalStackLayout>
     </ScrollView>
