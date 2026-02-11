@@ -21,41 +21,44 @@
 
 ## Development Environment
 
-**Setup: WSL (source code) + Windows (build & run)**
+**Setup: Windows (native development)**
 
-Source code lives in WSL, but build/run operations are executed from Windows PowerShell.
+Development is done natively on Windows due to MAUI build issues under WSL/Ubuntu.
 
 ### Prerequisites
-1. **WSL**: Git for version control, text editor/IDE
-2. **Windows**: 
-   - .NET 9 SDK with MAUI workload (`dotnet workload install maui`)
-   - Android Studio with SDK and emulator
-   - PowerShell or Command Prompt
+- .NET 9 SDK with MAUI workload (`dotnet workload install maui`)
+- Android Studio with SDK and emulator
+- PowerShell or Command Prompt
+- Git for Windows (for version control)
 
 ### Workflow
 
-1. **Edit code**: Work in WSL at `/home/<USERNAME>/projects/puzzle-dazzle`
-2. **Build/Run**: From Windows PowerShell, access WSL filesystem:
-   ```powershell
-   # Navigate to project (replace <USERNAME> with your WSL username)
-   cd \\wsl$\Ubuntu\home\<USERNAME>\projects\puzzle-dazzle
-   
-   # Or use the shorter wsl.localhost path
-   cd \\wsl.localhost\Ubuntu\home\<USERNAME>\projects\puzzle-dazzle
-   ```
+All operations (edit, build, run) are performed on Windows:
+```powershell
+# Navigate to project directory
+cd C:\Users\AKazlou\Projects\puzzle-dazzle
+
+# Or if working from WSL, access via Windows path
+cd /mnt/c/Users/AKazlou/Projects/puzzle-dazzle
+```
 
 ### Build Commands (Windows PowerShell)
 
 ```powershell
-# Build for Android
-dotnet build -f net9.0-android
+# Build the entire solution
+dotnet build PuzzleDazzle.sln
 
-# Run on connected device/emulator
-dotnet build -f net9.0-android -t:Run
+# Build for Android
+dotnet build src/PuzzleDazzle/PuzzleDazzle.csproj -f net9.0-android
+
+# Run on connected device/emulator (fast rebuild + deploy)
+dotnet build src/PuzzleDazzle/PuzzleDazzle.csproj -f net9.0-android -t:Run
 
 # Build release APK
-dotnet publish -f net9.0-android -c Release
+dotnet publish src/PuzzleDazzle/PuzzleDazzle.csproj -f net9.0-android -c Release
 ```
+
+**Note:** XAML Hot Reload is unreliable on Android via CLI. Use fast rebuild (`-t:Run`) for development iteration.
 
 ### Running the Emulator
 
@@ -65,9 +68,10 @@ dotnet publish -f net9.0-android -c Release
 
 ### Notes
 
-- No ADB bridging required (everything runs on Windows)
-- Android SDK on Windows is automatically detected by .NET MAUI
-- Visual Studio on Windows can directly edit files on WSL filesystem via `\\wsl$\` path
+- All development happens natively on Windows (no WSL/Windows bridging needed)
+- Android SDK is automatically detected by .NET MAUI
+- Hot reload is unreliable; use fast rebuild workflow for changes
+- Project can still be accessed from WSL via `/mnt/c/Users/AKazlou/Projects/puzzle-dazzle` if needed
 
 ### Project Structure (planned)
 ```
