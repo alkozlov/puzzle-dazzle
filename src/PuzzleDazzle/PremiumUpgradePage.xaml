@@ -97,7 +97,7 @@
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Gray900}" />
                     <Label Grid.Column="1"
-                           Text="$2.99"
+                           Text="$0.99"
                            FontSize="22"
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Primary}" />
@@ -139,7 +139,7 @@
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Gray900}" />
                     <Label Grid.Column="1"
-                           Text="$29.99"
+                           Text="$9.99"
                            FontSize="22"
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Secondary}" />

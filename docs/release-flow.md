@@ -126,10 +126,10 @@ Configure release tracks:
 - **First $1M per year**: 15% commission
 - **After $1M**: 30% commission
 
-**Example for $2.99/month subscription:**
-- User pays: $2.99
-- You receive: ~$2.54 (85%)
-- Google takes: ~$0.45 (15%)
+**Example for $0.99/month subscription:**
+- User pays: $0.99
+- You receive: ~$0.84 (85%)
+- Google takes: ~$0.15 (15%)
 
 **Annual subscription is better:**
 - Higher revenue per user
@@ -150,7 +150,7 @@ Configure release tracks:
 - Save and share features
 - Optional ads for revenue
 
-### Premium Tier ($2.99/month or $29.99/year)
+### Premium Tier ($0.99/month or $9.99/year)
 - Unlimited maze generation
 - All maze sizes and difficulties
 - No daily generation limit
@@ -159,18 +159,18 @@ Configure release tracks:
 ### Revenue Potential Example
 
 **Monthly Subscription Model:**
-- 100 users × $2.99 = $299/month → ~$254 after fees
-- 500 users × $2.99 = $1,495/month → ~$1,271 after fees
-- 1,000 users × $2.99 = $2,990/month → ~$2,541 after fees
+- 100 users × $0.99 = $99/month → ~$84 after fees
+- 500 users × $0.99 = $495/month → ~$421 after fees
+- 1,000 users × $0.99 = $990/month → ~$841 after fees
 
 **Annual Subscription Model (Better retention):**
-- 100 users × $29.99 = $2,999/year → ~$2,549 after fees
-- 500 users × $29.99 = $14,995/year → ~$12,746 after fees
-- 1,000 users × $29.99 = $29,990/year → ~$25,491 after fees
+- 100 users × $9.99 = $999/year → ~$849 after fees
+- 500 users × $9.99 = $4,995/year → ~$4,246 after fees
+- 1,000 users × $9.99 = $9,990/year → ~$8,491 after fees
 
 **Combined Strategy:**
 - Offer both monthly and annual
-- Annual saves ~16% for users ($29.99 vs $35.88)
+- Annual saves ~16% for users ($9.99 vs $11.88)
 - Better for you: Higher upfront revenue, better retention
 
 ---
@@ -322,7 +322,7 @@ Configure release tracks:
 ### Monetization Strategy:
 1. **Start free** - Build user base first
 2. **Add value** - Premium features must be worth paying for
-3. **Fair pricing** - $2.99/month is reasonable for utility apps
+3. **Fair pricing** - $0.99/month is reasonable for utility apps
 4. **Free trial** - 7 days lets users test before buying
 5. **Don't be too aggressive** - 5 mazes/day is generous free tier
 

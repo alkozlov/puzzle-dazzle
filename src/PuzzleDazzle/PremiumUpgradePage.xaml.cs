@@ -12,7 +12,7 @@ public partial class PremiumUpgradePage : ContentPage
 		// TODO: Integrate with Google Play Billing (puzzle-e36)
 		await DisplayAlert(
 			"Coming Soon",
-			"Monthly subscription ($2.99/month) will be available when the app is published on Google Play.",
+			"Monthly subscription ($0.99/month) will be available when the app is published on Google Play.",
 			"OK");
 	}
 
@@ -21,7 +21,7 @@ public partial class PremiumUpgradePage : ContentPage
 		// TODO: Integrate with Google Play Billing (puzzle-e36)
 		await DisplayAlert(
 			"Coming Soon",
-			"Annual subscription ($29.99/year) will be available when the app is published on Google Play.",
+			"Annual subscription ($9.99/year) will be available when the app is published on Google Play.",
 			"OK");
 	}
 

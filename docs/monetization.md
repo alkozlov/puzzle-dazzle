@@ -19,8 +19,8 @@ The app will use a freemium model that allows users to use basic features for fr
 
 The following paid access options will be available to users:
 
-- Monthly subscription: $2.99 per month. Subscriptions should not auto-renew; users must manually renew each month.
-- Annual subscription: $29.99 per year. Subscriptions should not auto-renew; users must manually renew each year.
+- Monthly subscription: $0.99 per month. Subscriptions should not auto-renew; users must manually renew each month.
+- Annual subscription: $9.99 per year. Subscriptions should not auto-renew; users must manually renew each year.
 
 It is desirable to support regional pricing to make paid features more accessible to users in different countries. This part should be discussed before implementation, as it may require additional setup and ongoing maintenance.
 
