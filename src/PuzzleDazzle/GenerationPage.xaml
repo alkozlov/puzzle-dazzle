@@ -105,17 +105,17 @@
                         Clicked="OnStartClicked"
                         SemanticProperties.Hint="Generate a new maze" />
                 
-                <!-- Print Button -->
+                <!-- Share Button -->
                 <Button Grid.Column="3"
-                        x:Name="PrintButton"
-                        Text="🖨️&#10;Print"
+                        x:Name="ShareButton"
+                        Text="📤&#10;Share"
                         FontSize="12"
                         HeightRequest="60"
                         BackgroundColor="Transparent"
                         TextColor="{DynamicResource Gray700}"
-                        Clicked="OnPrintClicked"
+                        Clicked="OnShareClicked"
                         IsEnabled="False"
-                        SemanticProperties.Hint="Print the generated maze" />
+                        SemanticProperties.Hint="Share the generated maze" />
                 
                 <!-- Spacer for balance -->
                 <BoxView Grid.Column="4" IsVisible="False" />

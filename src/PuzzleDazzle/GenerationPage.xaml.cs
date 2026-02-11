@@ -80,9 +80,9 @@ public partial class GenerationPage : ContentPage
 			ProgressSection.IsVisible = false;
 			MazeDisplayArea.IsVisible = true;
 			
-			// Enable Save and Print buttons
+			// Enable Save and Share buttons
 			SaveButton.IsEnabled = true;
-			PrintButton.IsEnabled = true;
+			ShareButton.IsEnabled = true;
 		}
 		catch (Exception ex)
 		{
@@ -97,10 +97,10 @@ public partial class GenerationPage : ContentPage
 		await DisplayAlert("Save", "Maze will be saved as PNG (coming soon)", "OK");
 	}
 
-	private async void OnPrintClicked(object? sender, EventArgs e)
+	private async void OnShareClicked(object? sender, EventArgs e)
 	{
-		// TODO: Implement maze printing functionality
-		await DisplayAlert("Print", "Maze will be printed (coming soon)", "OK");
+		// TODO: Implement maze sharing functionality
+		await DisplayAlert("Share", "Maze will be shared (coming soon)", "OK");
 	}
 
 	private async void OnSettingsClicked(object? sender, EventArgs e)
