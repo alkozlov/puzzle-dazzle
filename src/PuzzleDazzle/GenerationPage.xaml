@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PuzzleDazzle.GenerationPage"
+             Title="Maze Generation"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+        
+        <!-- Progress Indicator (shown during generation) -->
+        <StackLayout Grid.Row="0" 
+                     x:Name="ProgressSection"
+                     IsVisible="True"
+                     Spacing="15"
+                     Margin="0,20,0,0">
+            <Label Text="Generating your maze..."
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{DynamicResource Primary}" />
+            <ActivityIndicator IsRunning="True"
+                             Color="{DynamicResource Primary}"
+                             HeightRequest="50" />
+        </StackLayout>
+
+        <!-- Maze Display Area -->
+        <Grid Grid.Row="1"
+              x:Name="MazeDisplayArea"
+              IsVisible="False"
+              Margin="0,20,0,20">
+            
+            <!-- Placeholder for maze visualization -->
+            <Frame BorderColor="{DynamicResource Gray300}"
+                   CornerRadius="10"
+                   Padding="0"
+                   HasShadow="True">
+                <Grid BackgroundColor="White">
+                    <!-- This will be replaced with actual maze rendering -->
+                    <Label Text="Maze will be displayed here"
+                           FontSize="16"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="{DynamicResource Gray400}" />
+                </Grid>
+            </Frame>
+        </Grid>
+
+        <!-- Action Buttons -->
+        <VerticalStackLayout Grid.Row="2" 
+                           Spacing="15"
+                           Margin="0,0,0,10">
+            
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                <!-- Save Button -->
+                <Button Grid.Column="0"
+                        x:Name="SaveButton"
+                        Text="Save"
+                        FontSize="18"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        BackgroundColor="{DynamicResource Primary}"
+                        TextColor="White"
+                        Clicked="OnSaveClicked"
+                        IsEnabled="False"
+                        SemanticProperties.Hint="Save the generated maze as an image" />
+                
+                <!-- Retry Button -->
+                <Button Grid.Column="1"
+                        x:Name="RetryButton"
+                        Text="Retry"
+                        FontSize="18"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        BackgroundColor="{DynamicResource Secondary}"
+                        TextColor="White"
+                        Clicked="OnRetryClicked"
+                        IsEnabled="False"
+                        SemanticProperties.Hint="Generate a new maze with the same settings" />
+            </Grid>
+
+            <!-- Back Button -->
+            <Button Text="Back to Main"
+                    FontSize="18"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    BackgroundColor="{DynamicResource Gray600}"
+                    TextColor="White"
+                    Clicked="OnBackClicked"
+                    SemanticProperties.Hint="Return to main screen" />
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>
