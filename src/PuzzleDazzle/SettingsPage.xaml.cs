@@ -34,6 +34,11 @@ public partial class SettingsPage : ContentPage
 		}
 	}
 
+	private async void OnUpgradeClicked(object? sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync(nameof(PremiumUpgradePage));
+	}
+
 	private async void OnBackClicked(object? sender, EventArgs e)
 	{
 		// Navigate back to main page

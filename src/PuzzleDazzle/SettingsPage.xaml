@@ -47,6 +47,42 @@
                 </Picker>
             </StackLayout>
 
+            <!-- Upgrade to Premium -->
+            <Border Stroke="{DynamicResource Tertiary}"
+                    StrokeThickness="2"
+                    BackgroundColor="White"
+                    Padding="15">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Label Text="{x:Static local:FontAwesomeIcons.Star}"
+                           FontFamily="FontAwesome"
+                           FontSize="24"
+                           TextColor="{DynamicResource Tertiary}"
+                           VerticalTextAlignment="Center" />
+                    <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="Upgrade to Premium"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource Gray900}" />
+                        <Label Text="Unlimited maze generation"
+                               FontSize="13"
+                               TextColor="{DynamicResource Gray500}" />
+                    </StackLayout>
+                    <Label Grid.Column="2"
+                           Text="{x:Static local:FontAwesomeIcons.ArrowLeft}"
+                           FontFamily="FontAwesome"
+                           FontSize="16"
+                           TextColor="{DynamicResource Gray400}"
+                           VerticalTextAlignment="Center"
+                           Rotation="180" />
+                </Grid>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnUpgradeClicked" />
+                </Border.GestureRecognizers>
+            </Border>
+
             <!-- Back Button -->
             <Button Text="{x:Static local:FontAwesomeIcons.ArrowLeft}"
                     FontFamily="FontAwesome"

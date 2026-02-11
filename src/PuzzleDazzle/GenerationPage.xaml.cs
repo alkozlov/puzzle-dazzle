@@ -10,12 +10,16 @@ public partial class GenerationPage : ContentPage
 	private Maze? _currentMaze;
 	private readonly MazeGenerator _generator;
 	private readonly MazeExportService _exportService;
+	private readonly UsageTrackingService _usageTracking;
+	private readonly ISubscriptionService _subscriptionService;
 
 	public GenerationPage()
 	{
 		InitializeComponent();
 		_generator = new MazeGenerator();
 		_exportService = new MazeExportService(new ClassicMazeRenderer(), null!);
+		_subscriptionService = new MockSubscriptionService();
+		_usageTracking = new UsageTrackingService(_subscriptionService);
 	}
 
 	protected override void OnAppearing()
@@ -23,6 +27,7 @@ public partial class GenerationPage : ContentPage
 		base.OnAppearing();
 		// Don't auto-generate - user must press Start button
 		ShowWelcomeState();
+		UpdateRemainingLabel();
 	}
 
 	private void ShowWelcomeState()
@@ -33,8 +38,48 @@ public partial class GenerationPage : ContentPage
 		WelcomeSection.IsVisible = true;
 	}
 
+	private async void UpdateRemainingLabel()
+	{
+		var remaining = _usageTracking.GetRemainingCount();
+		var total = UsageTrackingService.DailyFreeLimit;
+
+		// Hide label for premium users
+		if (await _subscriptionService.IsPremiumAsync())
+		{
+			RemainingLabel.IsVisible = false;
+			return;
+		}
+
+		RemainingLabel.IsVisible = true;
+		RemainingLabel.Text = $"{remaining} of {total} remaining today";
+
+		// Change color when running low
+		if (remaining == 0)
+			RemainingLabel.TextColor = Color.FromArgb("#FF6B6B");
+		else if (remaining <= 2)
+			RemainingLabel.TextColor = Color.FromArgb("#FFD700");
+		else
+			RemainingLabel.TextColor = Color.FromArgb("#999999");
+	}
+
 	private async void OnStartClicked(object? sender, EventArgs e)
 	{
+		// Check if user can generate
+		if (!await _usageTracking.CanGenerateAsync())
+		{
+			var upgrade = await DisplayAlert(
+				"Daily Limit Reached",
+				$"You've used all {UsageTrackingService.DailyFreeLimit} free mazes today.\n\nUpgrade to Premium for unlimited maze generation!",
+				"Upgrade",
+				"OK");
+
+			if (upgrade)
+			{
+				await Shell.Current.GoToAsync(nameof(PremiumUpgradePage));
+			}
+			return;
+		}
+
 		await StartMazeGeneration();
 	}
 
@@ -76,6 +121,10 @@ public partial class GenerationPage : ContentPage
 			});
 
 			_currentMaze = await _generator.GenerateAsync(rows, columns, difficulty, progress);
+
+			// Record the generation for usage tracking
+			_usageTracking.RecordGeneration();
+			UpdateRemainingLabel();
 
 			// Display the maze
 			MazeView.SetMaze(_currentMaze);

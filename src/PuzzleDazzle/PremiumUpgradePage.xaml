@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PuzzleDazzle"
+             x:Class="PuzzleDazzle.PremiumUpgradePage"
+             Title="Premium"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25">
+
+            <!-- Header -->
+            <StackLayout Spacing="10">
+                <Label Text="{x:Static local:FontAwesomeIcons.Star}"
+                       FontFamily="FontAwesome"
+                       FontSize="48"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource Tertiary}" />
+                <Label Text="Puzzle Dazzle Premium"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource Primary}" />
+                <Label Text="Unlock unlimited maze generation"
+                       FontSize="16"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{DynamicResource Gray600}" />
+            </StackLayout>
+
+            <!-- Benefits -->
+            <Border Stroke="{DynamicResource Gray200}"
+                    StrokeThickness="1"
+                    BackgroundColor="White"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <StackLayout Spacing="15">
+                    <Label Text="What you get:"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource Gray900}" />
+
+                    <!-- Benefit 1 -->
+                    <HorizontalStackLayout Spacing="12">
+                        <Label Text="{x:Static local:FontAwesomeIcons.CircleCheck}"
+                               FontFamily="FontAwesome"
+                               FontSize="20"
+                               TextColor="{DynamicResource Secondary}"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="Unlimited maze generation"
+                               FontSize="16"
+                               TextColor="{DynamicResource Gray700}"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+
+                    <!-- Benefit 2 -->
+                    <HorizontalStackLayout Spacing="12">
+                        <Label Text="{x:Static local:FontAwesomeIcons.CircleCheck}"
+                               FontFamily="FontAwesome"
+                               FontSize="20"
+                               TextColor="{DynamicResource Secondary}"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="All maze sizes and difficulties"
+                               FontSize="16"
+                               TextColor="{DynamicResource Gray700}"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+
+                    <!-- Benefit 3 -->
+                    <HorizontalStackLayout Spacing="12">
+                        <Label Text="{x:Static local:FontAwesomeIcons.CircleCheck}"
+                               FontFamily="FontAwesome"
+                               FontSize="20"
+                               TextColor="{DynamicResource Secondary}"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="Support future development"
+                               FontSize="16"
+                               TextColor="{DynamicResource Gray700}"
+                               VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </StackLayout>
+            </Border>
+
+            <!-- Monthly Subscription Card -->
+            <Border x:Name="MonthlyCard"
+                    Stroke="{DynamicResource Gray200}"
+                    StrokeThickness="1"
+                    BackgroundColor="White"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                    <Label Text="Monthly"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource Gray900}" />
+                    <Label Grid.Column="1"
+                           Text="$2.99"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource Primary}" />
+                    <Label Grid.Row="1"
+                           Text="Billed monthly, no auto-renew"
+                           FontSize="13"
+                           TextColor="{DynamicResource Gray500}" />
+                    <Label Grid.Row="1" Grid.Column="1"
+                           Text="/month"
+                           FontSize="13"
+                           TextColor="{DynamicResource Gray500}"
+                           HorizontalTextAlignment="End" />
+                </Grid>
+            </Border>
+
+            <!-- Monthly Subscribe Button -->
+            <Button x:Name="MonthlyButton"
+                    Text="Subscribe Monthly"
+                    FontSize="16"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    BackgroundColor="{DynamicResource Primary}"
+                    TextColor="White"
+                    Clicked="OnMonthlyClicked"
+                    Margin="0,-15,0,0" />
+
+            <!-- Annual Subscription Card -->
+            <Border x:Name="AnnualCard"
+                    Stroke="{DynamicResource Secondary}"
+                    StrokeThickness="2"
+                    BackgroundColor="White"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                    <Label Text="Annual"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource Gray900}" />
+                    <Label Grid.Column="1"
+                           Text="$29.99"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource Secondary}" />
+                    <Label Grid.Row="1"
+                           Text="Billed yearly, no auto-renew"
+                           FontSize="13"
+                           TextColor="{DynamicResource Gray500}" />
+                    <Label Grid.Row="1" Grid.Column="1"
+                           Text="/year"
+                           FontSize="13"
+                           TextColor="{DynamicResource Gray500}"
+                           HorizontalTextAlignment="End" />
+                    <Border Grid.Row="2" Grid.ColumnSpan="2"
+                            BackgroundColor="{DynamicResource Tertiary}"
+                            Padding="8,4"
+                            HorizontalOptions="Start"
+                            Margin="0,8,0,0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="4" />
+                        </Border.StrokeShape>
+                        <Label Text="Save 16%"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Annual Subscribe Button -->
+            <Button x:Name="AnnualButton"
+                    Text="Subscribe Annually"
+                    FontSize="16"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    BackgroundColor="{DynamicResource Secondary}"
+                    TextColor="White"
+                    Clicked="OnAnnualClicked"
+                    Margin="0,-15,0,0" />
+
+            <!-- Back Button -->
+            <Button Text="{x:Static local:FontAwesomeIcons.ArrowLeft}"
+                    FontFamily="FontAwesome"
+                    FontSize="20"
+                    WidthRequest="56"
+                    HeightRequest="56"
+                    CornerRadius="28"
+                    BackgroundColor="{DynamicResource Gray100}"
+                    TextColor="{DynamicResource Gray700}"
+                    Clicked="OnBackClicked"
+                    HorizontalOptions="Center"
+                    Margin="0,10,0,0"
+                    SemanticProperties.Hint="Go back" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
