@@ -50,17 +50,14 @@
                     Stroke="{DynamicResource Gray300}"
                     StrokeThickness="2"
                     BackgroundColor="White"
-                    Padding="20"
+                    Padding="5"
                     Margin="20">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="10" />
                 </Border.StrokeShape>
                 
                 <!-- Actual maze visualization -->
-                <controls:MazeView x:Name="MazeView" 
-                                   Margin="10"
-                                   HorizontalOptions="Center"
-                                   VerticalOptions="Center" />
+                <controls:MazeView x:Name="MazeView" />
             </Border>
         </Grid>
 
