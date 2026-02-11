@@ -32,10 +32,9 @@ public partial class GenerationPage : ContentPage
 	public async void StartMazeGeneration()
 	{
 		// Show progress indicator
+		WelcomeSection.IsVisible = false;
 		ProgressSection.IsVisible = true;
 		MazeDisplayArea.IsVisible = false;
-		SaveButton.IsEnabled = false;
-		RetryButton.IsEnabled = false;
 
 		try
 		{
