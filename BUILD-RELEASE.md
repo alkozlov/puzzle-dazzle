@@ -18,8 +18,8 @@ src/PuzzleDazzle/bin/Release/net9.0-android/publish/
 ```
 
 Generated files:
-- `com.companyname.mazeledazzle-Signed.apk` (~28 MB) - For direct installation or sideloading
-- `com.companyname.mazeledazzle-Signed.aab` (~28 MB) - For Google Play Store upload (recommended)
+- `app.mazeledazzle-Signed.apk` (~28 MB) - For direct installation or sideloading
+- `app.mazeledazzle-Signed.aab` (~28 MB) - For Google Play Store upload (recommended)
 
 ## Prerequisites
 
@@ -57,7 +57,7 @@ The release signing is configured in `src/PuzzleDazzle/PuzzleDazzle.csproj`:
 ## Distribution Options
 
 ### Option 1: Direct APK Distribution (Testing/Friends)
-Use the `com.companyname.mazeledazzle-Signed.apk` file:
+Use the `app.mazeledazzle-Signed.apk` file:
 1. Copy APK to device or share via email/cloud
 2. Enable "Install from unknown sources" on device
 3. Tap APK file to install
@@ -65,7 +65,7 @@ Use the `com.companyname.mazeledazzle-Signed.apk` file:
 **Best for**: Early testing, sharing with friends/family
 
 ### Option 2: Google Play Store (Production)
-Use the `com.companyname.mazeledazzle-Signed.aab` file:
+Use the `app.mazeledazzle-Signed.aab` file:
 1. Create Google Play Developer account ($25 one-time fee)
 2. Create app listing in Play Console
 3. Upload AAB to desired track (Internal/Closed/Open/Production)

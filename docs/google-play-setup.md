@@ -5,7 +5,7 @@ Step-by-step guide for setting up your app in Google Play Console.
 ## Prerequisites
 
 - ✅ Google Play Developer Account (verified)
-- ✅ Signed AAB file: `com.companyname.mazeledazzle-Signed.aab`
+- ✅ Signed AAB file: `app.mazeledazzle-Signed.aab`
 - ✅ App descriptions and store listing text
 - ✅ Privacy policy document
 - ⏳ Screenshots (2-8 images)
@@ -166,7 +166,7 @@ Complete if not done in Main Store Listing above.
 4. **Release**:
    - Click **"Create new release"**
    - **Upload AAB**:
-     - Upload: `com.companyname.mazeledazzle-Signed.aab`
+     - Upload: `app.mazeledazzle-Signed.aab`
      - Wait for processing (may take a few minutes)
    
    - **Release name**: 1.0 (Version 1)
