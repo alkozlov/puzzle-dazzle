@@ -29,7 +29,12 @@ public partial class GenerationPage : ContentPage
 		WelcomeSection.IsVisible = true;
 	}
 
-	public async void StartMazeGeneration()
+	private async void OnStartClicked(object? sender, EventArgs e)
+	{
+		await StartMazeGeneration();
+	}
+
+	private async Task StartMazeGeneration()
 	{
 		// Show progress indicator
 		WelcomeSection.IsVisible = false;
