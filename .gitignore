@@ -55,3 +55,7 @@ nunit-*.xml
 
 # bv (beads viewer) local config and caches
 .bv/
+
+# Android keystore files (contain sensitive signing keys)
+*.keystore
+*.jks
