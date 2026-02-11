@@ -121,8 +121,12 @@ public partial class GenerationPage : ContentPage
 			// Save to file
 			var filePath = await _exportService.SaveToFileAsync(imageBytes);
 			
-			// Show success message
-			await DisplayAlert("Success", $"Maze saved to Pictures/PuzzleDazzle folder!\n\nPath: {filePath}", "OK");
+			// Show success message (user-friendly for release, detailed for debug)
+#if DEBUG
+			await DisplayAlert("Saved!", $"Maze saved to gallery!\n\nDebug path: {filePath}", "OK");
+#else
+			await DisplayAlert("Saved!", "Your maze has been saved to the gallery!", "OK");
+#endif
 		}
 		catch (Exception ex)
 		{
