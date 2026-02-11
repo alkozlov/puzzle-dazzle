@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:PuzzleDazzle.Controls"
              x:Class="PuzzleDazzle.GenerationPage"
              Title="Maze Generation"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
@@ -24,29 +25,21 @@
         </StackLayout>
 
         <!-- Maze Display Area -->
-        <Grid Grid.Row="1"
-              x:Name="MazeDisplayArea"
-              IsVisible="False"
-              Margin="0,20,0,20">
+        <Border Grid.Row="1"
+                x:Name="MazeDisplayArea"
+                IsVisible="False"
+                Stroke="{DynamicResource Gray300}"
+                StrokeThickness="2"
+                BackgroundColor="White"
+                Padding="5"
+                Margin="0,20,0,20">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
             
-            <!-- Placeholder for maze visualization -->
-            <Border Stroke="{DynamicResource Gray300}"
-                    StrokeThickness="2"
-                    BackgroundColor="White"
-                    Padding="0">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10" />
-                </Border.StrokeShape>
-                <Grid BackgroundColor="White">
-                    <!-- This will be replaced with actual maze rendering -->
-                    <Label Text="Maze will be displayed here"
-                           FontSize="16"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           TextColor="{DynamicResource Gray400}" />
-                </Grid>
-            </Border>
-        </Grid>
+            <!-- Actual maze visualization -->
+            <controls:MazeView x:Name="MazeView" />
+        </Border>
 
         <!-- Action Buttons -->
         <VerticalStackLayout Grid.Row="2" 
