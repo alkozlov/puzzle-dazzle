@@ -86,7 +86,9 @@ public partial class GenerationPage : ContentPage
 			
 			// Enable Save and Share buttons
 			SaveButton.IsEnabled = true;
+			SaveButton.Opacity = 1.0;
 			ShareButton.IsEnabled = true;
+			ShareButton.Opacity = 1.0;
 		}
 		catch (Exception ex)
 		{

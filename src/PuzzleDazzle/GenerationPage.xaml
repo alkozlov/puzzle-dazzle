@@ -61,64 +61,99 @@
             </Border>
         </Grid>
 
-        <!-- Bottom Toolbar -->
+        <!-- Bottom Button Panel -->
         <Border Grid.Row="1"
-                BackgroundColor="{DynamicResource Gray100}"
-                Padding="10,15">
+                BackgroundColor="White"
+                Padding="20,15"
+                StrokeThickness="0">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="0" />
             </Border.StrokeShape>
             
-            <Grid ColumnDefinitions="*,*,2*,*,*" ColumnSpacing="10">
+            <!-- Shadow effect -->
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                        Opacity="0.1"
+                        Radius="10"
+                        Offset="0,-2" />
+            </Border.Shadow>
+            
+            <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,*,Auto" ColumnSpacing="0">
                 
-                <!-- Settings Button -->
+                <!-- Settings Button (Left) -->
                 <Button Grid.Column="0"
-                        Text="⚙️&#10;Settings"
-                        FontSize="12"
-                        HeightRequest="60"
-                        BackgroundColor="Transparent"
+                        Text="⚙️"
+                        FontSize="28"
+                        WidthRequest="56"
+                        HeightRequest="56"
+                        CornerRadius="28"
+                        BackgroundColor="{DynamicResource Gray100}"
                         TextColor="{DynamicResource Gray700}"
                         Clicked="OnSettingsClicked"
+                        Padding="0"
                         SemanticProperties.Hint="Open settings" />
                 
+                <!-- Spacer -->
+                <BoxView Grid.Column="1" BackgroundColor="Transparent" />
+                
                 <!-- Save Button -->
-                <Button Grid.Column="1"
+                <Button Grid.Column="2"
                         x:Name="SaveButton"
-                        Text="💾&#10;Save"
-                        FontSize="12"
-                        HeightRequest="60"
-                        BackgroundColor="Transparent"
+                        Text="💾"
+                        FontSize="28"
+                        WidthRequest="56"
+                        HeightRequest="56"
+                        CornerRadius="28"
+                        BackgroundColor="{DynamicResource Gray100}"
                         TextColor="{DynamicResource Gray700}"
                         Clicked="OnSaveClicked"
                         IsEnabled="False"
+                        Padding="0"
+                        Opacity="0.4"
                         SemanticProperties.Hint="Save the generated maze" />
                 
-                <!-- Start Button (Centered, Primary) -->
-                <Button Grid.Column="2"
-                        Text="▶️ Start"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        HeightRequest="60"
-                        CornerRadius="30"
+                <!-- Spacer -->
+                <BoxView Grid.Column="3" BackgroundColor="Transparent" />
+                
+                <!-- Generate Button (Center, Primary, Larger) -->
+                <Button Grid.Column="4"
+                        Text="▶️"
+                        FontSize="36"
+                        WidthRequest="72"
+                        HeightRequest="72"
+                        CornerRadius="36"
                         BackgroundColor="{DynamicResource Primary}"
                         TextColor="White"
                         Clicked="OnStartClicked"
-                        SemanticProperties.Hint="Generate a new maze" />
+                        Padding="0"
+                        SemanticProperties.Hint="Generate a new maze">
+                    <Button.Shadow>
+                        <Shadow Brush="{DynamicResource Primary}"
+                                Opacity="0.3"
+                                Radius="10"
+                                Offset="0,4" />
+                    </Button.Shadow>
+                </Button>
                 
-                <!-- Share Button -->
-                <Button Grid.Column="3"
+                <!-- Spacer -->
+                <BoxView Grid.Column="5" BackgroundColor="Transparent" />
+                
+                <!-- Share Button (Right) -->
+                <Button Grid.Column="6"
                         x:Name="ShareButton"
-                        Text="📤&#10;Share"
-                        FontSize="12"
-                        HeightRequest="60"
-                        BackgroundColor="Transparent"
+                        Text="📤"
+                        FontSize="28"
+                        WidthRequest="56"
+                        HeightRequest="56"
+                        CornerRadius="28"
+                        BackgroundColor="{DynamicResource Gray100}"
                         TextColor="{DynamicResource Gray700}"
                         Clicked="OnShareClicked"
                         IsEnabled="False"
+                        Padding="0"
+                        Opacity="0.4"
                         SemanticProperties.Hint="Share the generated maze" />
                 
-                <!-- Spacer for balance -->
-                <BoxView Grid.Column="4" IsVisible="False" />
             </Grid>
         </Border>
 
