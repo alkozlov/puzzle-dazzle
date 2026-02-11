@@ -9,44 +9,33 @@ namespace PuzzleDazzle.Services;
 public class MazeExportService
 {
 	private readonly IMazeRenderer _renderer;
+	private readonly IServiceProvider _serviceProvider;
 
-	public MazeExportService(IMazeRenderer renderer)
+	public MazeExportService(IMazeRenderer renderer, IServiceProvider serviceProvider)
 	{
 		_renderer = renderer;
+		_serviceProvider = serviceProvider;
 	}
 
 	/// <summary>
-	/// Exports a maze to a PNG image.
+	/// Captures a screenshot of a view and saves it.
+	/// This is a simple approach that works reliably on Android.
 	/// </summary>
-	/// <param name="maze">The maze to export.</param>
-	/// <param name="width">Image width in pixels.</param>
-	/// <param name="height">Image height in pixels.</param>
-	/// <returns>PNG image as byte array.</returns>
-	public async Task<byte[]> ExportToPngAsync(Maze maze, int width = 2048, int height = 2048)
+	public async Task<byte[]> CaptureViewAsync(IView view)
 	{
-		return await Task.Run(() =>
-		{
-			// Create a bitmap canvas
-			var bitmap = new Microsoft.Maui.Graphics.Platform.PlatformImage(width, height);
-			var canvas = bitmap.Canvas;
+		var result = await view.CaptureAsync();
+		if (result == null)
+			throw new InvalidOperationException("Failed to capture view");
 
-			// Render the maze to the canvas
-			_renderer.Render(canvas, maze, width, height);
-
-			// Convert to PNG bytes
-			using var stream = new MemoryStream();
-			bitmap.Save(stream);
-			return stream.ToArray();
-		});
+		using var stream = new MemoryStream();
+		await result.CopyToAsync(stream, ScreenshotFormat.Png);
+		return stream.ToArray();
 	}
 
 	/// <summary>
-	/// Saves a maze as a PNG file to the device.
+	/// Saves captured image bytes as a PNG file to the device.
 	/// </summary>
-	/// <param name="maze">The maze to save.</param>
-	/// <param name="fileName">Optional custom file name (without extension).</param>
-	/// <returns>The full path to the saved file.</returns>
-	public async Task<string> SaveToFileAsync(Maze maze, string? fileName = null)
+	public async Task<string> SaveToFileAsync(byte[] imageBytes, string? fileName = null)
 	{
 		// Generate filename if not provided
 		if (string.IsNullOrEmpty(fileName))
@@ -64,26 +53,22 @@ public class MazeExportService
 		// Full file path
 		var filePath = Path.Combine(puzzleDazzlePath, $"{fileName}.png");
 
-		// Export to PNG
-		var pngBytes = await ExportToPngAsync(maze);
-
 		// Save to file
-		await File.WriteAllBytesAsync(filePath, pngBytes);
+		await File.WriteAllBytesAsync(filePath, imageBytes);
 
 		return filePath;
 	}
 
 	/// <summary>
-	/// Gets a temporary file path for sharing.
+	/// Saves image bytes to temp file for sharing.
 	/// </summary>
-	public async Task<string> SaveToTempFileAsync(Maze maze)
+	public async Task<string> SaveToTempFileAsync(byte[] imageBytes)
 	{
 		var tempPath = Path.GetTempPath();
 		var fileName = $"maze_share_{DateTime.Now:yyyyMMdd_HHmmss}.png";
 		var filePath = Path.Combine(tempPath, fileName);
 
-		var pngBytes = await ExportToPngAsync(maze);
-		await File.WriteAllBytesAsync(filePath, pngBytes);
+		await File.WriteAllBytesAsync(filePath, imageBytes);
 
 		return filePath;
 	}

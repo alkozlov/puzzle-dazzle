@@ -15,7 +15,7 @@ public partial class GenerationPage : ContentPage
 	{
 		InitializeComponent();
 		_generator = new MazeGenerator();
-		_exportService = new MazeExportService(new ClassicMazeRenderer());
+		_exportService = new MazeExportService(new ClassicMazeRenderer(), null!);
 	}
 
 	protected override void OnAppearing()
@@ -105,8 +105,11 @@ public partial class GenerationPage : ContentPage
 
 		try
 		{
-			// Save the maze
-			var filePath = await _exportService.SaveToFileAsync(_currentMaze);
+			// Capture the maze view as image
+			var imageBytes = await _exportService.CaptureViewAsync(MazeView);
+			
+			// Save to file
+			var filePath = await _exportService.SaveToFileAsync(imageBytes);
 			
 			// Show success message
 			await DisplayAlert("Success", $"Maze saved to:\n{filePath}", "OK");
@@ -127,8 +130,11 @@ public partial class GenerationPage : ContentPage
 
 		try
 		{
-			// Save maze to temp file
-			var tempFilePath = await _exportService.SaveToTempFileAsync(_currentMaze);
+			// Capture the maze view as image
+			var imageBytes = await _exportService.CaptureViewAsync(MazeView);
+			
+			// Save to temp file
+			var tempFilePath = await _exportService.SaveToTempFileAsync(imageBytes);
 			
 			// Share the file
 			await Share.Default.RequestAsync(new ShareFileRequest
