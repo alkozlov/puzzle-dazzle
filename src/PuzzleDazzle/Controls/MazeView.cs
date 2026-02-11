@@ -1,5 +1,5 @@
 using PuzzleDazzle.Core.Models;
-using PuzzleDazzle.Core.Rendering;
+using PuzzleDazzle.Rendering;
 
 namespace PuzzleDazzle.Controls;
 

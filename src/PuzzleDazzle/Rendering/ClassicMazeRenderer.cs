@@ -1,6 +1,6 @@
 using PuzzleDazzle.Core.Models;
 
-namespace PuzzleDazzle.Core.Rendering;
+namespace PuzzleDazzle.Rendering;
 
 /// <summary>
 /// Classic black and white maze renderer.
