@@ -47,6 +47,30 @@
                 </Picker>
             </StackLayout>
 
+            <!-- Generation Algorithm Section -->
+            <StackLayout Spacing="10">
+                <Label Text="Generation Algorithm"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource Primary}" />
+                <Label Text="Choose different algorithms to compare maze styles"
+                       FontSize="13"
+                       TextColor="{DynamicResource Gray500}"
+                       Margin="0,-5,0,0" />
+                
+                <Picker x:Name="AlgorithmPicker"
+                        Title="Select algorithm"
+                        FontSize="16"
+                        SelectedIndexChanged="OnAlgorithmChanged">
+                    <Picker.Items>
+                        <x:String>Recursive Backtracking</x:String>
+                        <x:String>Prim's Algorithm</x:String>
+                        <x:String>Kruskal's Algorithm</x:String>
+                        <x:String>Wilson's Algorithm</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
             <!-- Upgrade to Premium -->
             <Border Stroke="{DynamicResource Tertiary}"
                     StrokeThickness="2"

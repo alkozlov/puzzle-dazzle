@@ -1,200 +1,96 @@
+using PuzzleDazzle.Core.Generation.Algorithms;
 using PuzzleDazzle.Core.Models;
 
 namespace PuzzleDazzle.Core.Generation;
 
 /// <summary>
-/// Generates mazes using the recursive backtracking algorithm.
+/// Generates mazes using various algorithms.
+/// Supports Recursive Backtracking, Prim's, Kruskal's, and Wilson's algorithms.
 /// </summary>
 public class MazeGenerator
 {
 	private readonly Random _random;
+	private readonly Dictionary<MazeAlgorithm, IMazeGenerationAlgorithm> _algorithms;
 
 	public MazeGenerator()
 	{
 		_random = new Random();
+		_algorithms = InitializeAlgorithms();
 	}
 
 	public MazeGenerator(int seed)
 	{
 		_random = new Random(seed);
+		_algorithms = InitializeAlgorithms();
 	}
 
 	/// <summary>
-	/// Generates a maze asynchronously using recursive backtracking algorithm.
+	/// Initializes all available maze generation algorithms.
+	/// </summary>
+	private Dictionary<MazeAlgorithm, IMazeGenerationAlgorithm> InitializeAlgorithms()
+	{
+		return new Dictionary<MazeAlgorithm, IMazeGenerationAlgorithm>
+		{
+			{ MazeAlgorithm.RecursiveBacktracking, new RecursiveBacktrackingAlgorithm() },
+			{ MazeAlgorithm.Prims, new PrimsAlgorithm() },
+			{ MazeAlgorithm.Kruskals, new KruskalsAlgorithm() },
+			{ MazeAlgorithm.Wilsons, new WilsonsAlgorithm() }
+		};
+	}
+
+	/// <summary>
+	/// Generates a maze asynchronously using the specified algorithm.
 	/// </summary>
 	/// <param name="rows">Number of rows in the maze.</param>
 	/// <param name="columns">Number of columns in the maze.</param>
 	/// <param name="difficulty">Difficulty level affecting maze complexity.</param>
+	/// <param name="algorithm">Algorithm to use for generation.</param>
 	/// <param name="progress">Optional progress callback (0.0 to 1.0).</param>
 	/// <returns>A generated Maze object.</returns>
 	public async Task<Maze> GenerateAsync(
 		int rows, 
 		int columns, 
 		MazeDifficulty difficulty = MazeDifficulty.Medium,
+		MazeAlgorithm algorithm = MazeAlgorithm.RecursiveBacktracking,
 		IProgress<double>? progress = null)
 	{
-		return await Task.Run(() => Generate(rows, columns, difficulty, progress));
+		return await Task.Run(() => Generate(rows, columns, difficulty, algorithm, progress));
 	}
 
 	/// <summary>
-	/// Generates a maze synchronously using recursive backtracking algorithm.
+	/// Generates a maze synchronously using the specified algorithm.
 	/// </summary>
+	/// <param name="rows">Number of rows in the maze.</param>
+	/// <param name="columns">Number of columns in the maze.</param>
+	/// <param name="difficulty">Difficulty level affecting maze complexity.</param>
+	/// <param name="algorithm">Algorithm to use for generation.</param>
+	/// <param name="progress">Optional progress callback (0.0 to 1.0).</param>
+	/// <returns>A generated Maze object.</returns>
 	public Maze Generate(
 		int rows, 
 		int columns, 
 		MazeDifficulty difficulty = MazeDifficulty.Medium,
+		MazeAlgorithm algorithm = MazeAlgorithm.RecursiveBacktracking,
 		IProgress<double>? progress = null)
 	{
-		var maze = new Maze(rows, columns, difficulty);
-		
-		// Total cells to visit for progress tracking
-		int totalCells = rows * columns;
-		int visitedCells = 0;
-
-		// Start from the start cell
-		var stack = new Stack<Cell>();
-		var current = maze.StartCell;
-		current.Visited = true;
-		visitedCells++;
-		
-		progress?.Report((double)visitedCells / totalCells);
-
-		while (true)
+		// Get the selected algorithm
+		if (!_algorithms.TryGetValue(algorithm, out var algorithmImpl))
 		{
-			var unvisitedNeighbors = maze.GetUnvisitedNeighbors(current);
-
-			if (unvisitedNeighbors.Count > 0)
-			{
-				// Choose a random unvisited neighbor
-				var next = unvisitedNeighbors[_random.Next(unvisitedNeighbors.Count)];
-				
-				// Push current cell to stack
-				stack.Push(current);
-				
-				// Remove wall between current and chosen neighbor
-				current.RemoveWallBetween(next);
-				
-				// Move to chosen neighbor
-				current = next;
-				current.Visited = true;
-				visitedCells++;
-				
-				// Report progress
-				if (visitedCells % 10 == 0) // Update every 10 cells to avoid too frequent updates
-				{
-					progress?.Report((double)visitedCells / totalCells);
-				}
-			}
-			else if (stack.Count > 0)
-			{
-				// Backtrack
-				current = stack.Pop();
-			}
-			else
-			{
-				// All cells visited
-				break;
-			}
+			// Fallback to Recursive Backtracking if algorithm not found
+			algorithmImpl = _algorithms[MazeAlgorithm.RecursiveBacktracking];
 		}
 
-		// Apply difficulty-based modifications
-		ApplyDifficultyModifications(maze, difficulty);
-
-		// Reset visited flags for potential pathfinding later
-		maze.ResetVisited();
-
-		// Final progress report
-		progress?.Report(1.0);
-
-		return maze;
+		// Generate the maze using the selected algorithm
+		return algorithmImpl.Generate(rows, columns, difficulty, progress, _random);
 	}
 
 	/// <summary>
-	/// Applies modifications based on difficulty level.
+	/// Gets the algorithm implementation for a given algorithm type.
 	/// </summary>
-	private void ApplyDifficultyModifications(Maze maze, MazeDifficulty difficulty)
+	public IMazeGenerationAlgorithm GetAlgorithm(MazeAlgorithm algorithm)
 	{
-		switch (difficulty)
-		{
-			case MazeDifficulty.Easy:
-				// For easy difficulty, remove some additional walls to create shortcuts
-				RemoveRandomWalls(maze, wallsToRemove: (int)(maze.Rows * maze.Columns * 0.15));
-				break;
-
-			case MazeDifficulty.Medium:
-				// Medium keeps the generated maze as-is
-				break;
-
-			case MazeDifficulty.Hard:
-				// For hard difficulty, the generated maze is already complex enough
-				// Could add additional dead-ends or complexity here in future
-				break;
-		}
-	}
-
-	/// <summary>
-	/// Removes random walls to create shortcuts and make the maze easier.
-	/// </summary>
-	private void RemoveRandomWalls(Maze maze, int wallsToRemove)
-	{
-		int removed = 0;
-		int maxAttempts = wallsToRemove * 3; // Prevent infinite loop
-		int attempts = 0;
-
-		while (removed < wallsToRemove && attempts < maxAttempts)
-		{
-			attempts++;
-
-			// Pick a random cell
-			int row = _random.Next(maze.Rows);
-			int col = _random.Next(maze.Columns);
-			var cell = maze.Grid[row, col];
-
-			// Skip start and end cells
-			if (cell.IsStart || cell.IsEnd)
-				continue;
-
-			// Try to remove a random wall
-			int wallDirection = _random.Next(4); // 0=top, 1=right, 2=bottom, 3=left
-
-			switch (wallDirection)
-			{
-				case 0: // Top
-					if (cell.TopWall && row > 0)
-					{
-						var neighbor = maze.Grid[row - 1, col];
-						cell.RemoveWallBetween(neighbor);
-						removed++;
-					}
-					break;
-
-				case 1: // Right
-					if (cell.RightWall && col < maze.Columns - 1)
-					{
-						var neighbor = maze.Grid[row, col + 1];
-						cell.RemoveWallBetween(neighbor);
-						removed++;
-					}
-					break;
-
-				case 2: // Bottom
-					if (cell.BottomWall && row < maze.Rows - 1)
-					{
-						var neighbor = maze.Grid[row + 1, col];
-						cell.RemoveWallBetween(neighbor);
-						removed++;
-					}
-					break;
-
-				case 3: // Left
-					if (cell.LeftWall && col > 0)
-					{
-						var neighbor = maze.Grid[row, col - 1];
-						cell.RemoveWallBetween(neighbor);
-						removed++;
-					}
-					break;
-			}
-		}
+		return _algorithms.TryGetValue(algorithm, out var impl) 
+			? impl 
+			: _algorithms[MazeAlgorithm.RecursiveBacktracking];
 	}
 }
