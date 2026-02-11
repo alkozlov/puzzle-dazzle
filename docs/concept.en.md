@@ -25,6 +25,6 @@ The app is aimed at a wide range of users, including children, teenagers, and ad
 
 The app will be free to download and use but will offer a limited number of maze generations and templates. To access unlimited generations and templates, as well as additional features such as saving mazes at high resolution or using exclusive templates, users can purchase a premium subscription. The premium subscription will be offered monthly or yearly, with an option for a free trial for new users.
 
-Users who do not wish to purchase the premium subscription can continue using the app with limited features: generate no more than 3 mazes per day and use basic visualization templates.
+Users who do not wish to purchase the premium subscription can continue using the app with limited features: generate no more than 5 mazes per day and use basic visualization templates.
 
 User registration and subscription purchases will be carried out only through the built-in Google Play and App Store mechanisms, ensuring safety and convenience for users.

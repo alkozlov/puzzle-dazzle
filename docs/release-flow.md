@@ -144,19 +144,17 @@ Configure release tracks:
 ## Puzzle Dazzle Monetization Plan
 
 ### Free Tier (Ad-supported)
-- 3 mazes per day limit
+- 5 mazes per day limit
 - Classic visual style only
 - Basic maze sizes and difficulties
 - Save and share features
 - Optional ads for revenue
 
-### Premium Tier ($2.99/month or $19.99/year)
+### Premium Tier ($2.99/month or $29.99/year)
 - Unlimited maze generation
-- All visual styles (Classic, Soft, etc.)
 - All maze sizes and difficulties
-- High-resolution export
-- No ads
-- Priority support
+- No daily generation limit
+- Subscriptions do not auto-renew
 
 ### Revenue Potential Example
 
@@ -166,13 +164,13 @@ Configure release tracks:
 - 1,000 users × $2.99 = $2,990/month → ~$2,541 after fees
 
 **Annual Subscription Model (Better retention):**
-- 100 users × $19.99 = $1,999/year → ~$1,699 after fees
-- 500 users × $19.99 = $9,995/year → ~$8,496 after fees
-- 1,000 users × $19.99 = $19,990/year → ~$16,991 after fees
+- 100 users × $29.99 = $2,999/year → ~$2,549 after fees
+- 500 users × $29.99 = $14,995/year → ~$12,746 after fees
+- 1,000 users × $29.99 = $29,990/year → ~$25,491 after fees
 
 **Combined Strategy:**
 - Offer both monthly and annual
-- Annual saves ~33% for users ($19.99 vs $35.88)
+- Annual saves ~16% for users ($29.99 vs $35.88)
 - Better for you: Higher upfront revenue, better retention
 
 ---
@@ -231,10 +229,10 @@ Configure release tracks:
 ### Future: Monetization (Phase 7)
 **Goal: Implement premium features**
 
-- [ ] Implement usage tracking (3 mazes/day limit)
+- [x] Implement usage tracking (5 mazes/day limit)
 - [ ] Integrate Google Play Billing SDK
-- [ ] Create premium upgrade UI and paywall
-- [ ] Implement 7-day free trial
+- [x] Create premium upgrade UI and paywall
+- [x] Add unit tests for monetization services
 - [ ] Test subscription flow thoroughly
 - [ ] Release monetization update
 
@@ -326,7 +324,7 @@ Configure release tracks:
 2. **Add value** - Premium features must be worth paying for
 3. **Fair pricing** - $2.99/month is reasonable for utility apps
 4. **Free trial** - 7 days lets users test before buying
-5. **Don't be too aggressive** - 3 mazes/day is generous free tier
+5. **Don't be too aggressive** - 5 mazes/day is generous free tier
 
 ---
 
