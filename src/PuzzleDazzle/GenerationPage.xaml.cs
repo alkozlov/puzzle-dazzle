@@ -105,6 +105,14 @@ public partial class GenerationPage : ContentPage
 
 		try
 		{
+			// Request storage permissions
+			var status = await Permissions.RequestAsync<Permissions.StorageWrite>();
+			if (status != PermissionStatus.Granted)
+			{
+				await DisplayAlert("Permission Required", "Storage permission is needed to save images", "OK");
+				return;
+			}
+
 			// Capture the maze view as image
 			var imageBytes = await _exportService.CaptureViewAsync(MazeView);
 			
@@ -112,7 +120,7 @@ public partial class GenerationPage : ContentPage
 			var filePath = await _exportService.SaveToFileAsync(imageBytes);
 			
 			// Show success message
-			await DisplayAlert("Success", $"Maze saved to:\n{filePath}", "OK");
+			await DisplayAlert("Success", $"Maze saved to Pictures/PuzzleDazzle folder!\n\nPath: {filePath}", "OK");
 		}
 		catch (Exception ex)
 		{

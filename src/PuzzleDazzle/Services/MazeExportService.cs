@@ -43,8 +43,12 @@ public class MazeExportService
 			fileName = $"maze_{DateTime.Now:yyyyMMdd_HHmmss}";
 		}
 
-		// Get the Pictures directory
-		var picturesPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+		// Use Android's public Pictures directory via DCIM
+		// This makes files visible in Gallery and accessible to users
+		var picturesPath = Android.OS.Environment.GetExternalStoragePublicDirectory(
+			Android.OS.Environment.DirectoryPictures)?.AbsolutePath 
+			?? "/storage/emulated/0/Pictures";
+		
 		var puzzleDazzlePath = Path.Combine(picturesPath, "PuzzleDazzle");
 		
 		// Create directory if it doesn't exist
@@ -55,6 +59,21 @@ public class MazeExportService
 
 		// Save to file
 		await File.WriteAllBytesAsync(filePath, imageBytes);
+
+		// Notify Android media scanner so the image appears in Gallery
+		try
+		{
+			var context = Android.App.Application.Context;
+			Android.Media.MediaScannerConnection.ScanFile(
+				context, 
+				new[] { filePath }, 
+				new[] { "image/png" }, 
+				null);
+		}
+		catch
+		{
+			// Ignore media scanner errors
+		}
 
 		return filePath;
 	}
