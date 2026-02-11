@@ -53,75 +53,36 @@
                        FontAttributes="Bold"
                        TextColor="{DynamicResource Primary}" />
                 
-                <Label Text="Choose how your maze will look"
+                <Label Text="Classic black &amp; white style"
                        FontSize="14"
                        TextColor="{DynamicResource Gray600}" />
 
-                <!-- Style Selection Grid -->
-                <Grid ColumnDefinitions="*,*" 
-                      RowDefinitions="Auto,Auto"
-                      ColumnSpacing="15"
-                      RowSpacing="10"
-                      Margin="0,10,0,0">
-                    
-                    <!-- Classic Style -->
-                    <Border Grid.Column="0"
-                            x:Name="ClassicBorder"
-                            Stroke="{DynamicResource Primary}"
-                            StrokeThickness="2"
-                            BackgroundColor="White"
-                            Padding="10">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
-                        </Border.StrokeShape>
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnClassicStyleTapped" />
-                        </Border.GestureRecognizers>
-                        <StackLayout Spacing="5">
-                            <BoxView HeightRequest="100"
-                                     BackgroundColor="White"
-                                     CornerRadius="5" />
-                            <Label Text="Classic"
-                                   FontSize="16"
-                                   FontAttributes="Bold"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="{DynamicResource Gray900}" />
-                            <Label Text="Black &amp; White"
-                                   FontSize="12"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="{DynamicResource Gray600}" />
-                        </StackLayout>
-                    </Border>
-
-                    <!-- Soft Style -->
-                    <Border Grid.Column="1"
-                            x:Name="SoftBorder"
-                            Stroke="{DynamicResource Gray300}"
-                            StrokeThickness="2"
-                            BackgroundColor="White"
-                            Padding="10">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
-                        </Border.StrokeShape>
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnSoftStyleTapped" />
-                        </Border.GestureRecognizers>
-                        <StackLayout Spacing="5">
-                            <BoxView HeightRequest="100"
-                                     BackgroundColor="#F0F0F0"
-                                     CornerRadius="5" />
-                            <Label Text="Soft"
-                                   FontSize="16"
-                                   FontAttributes="Bold"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="{DynamicResource Gray900}" />
-                            <Label Text="Pastel Colors"
-                                   FontSize="12"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="{DynamicResource Gray600}" />
-                        </StackLayout>
-                    </Border>
-                </Grid>
+                <!-- Classic Style Display (read-only) -->
+                <Border Stroke="{DynamicResource Primary}"
+                        StrokeThickness="2"
+                        BackgroundColor="White"
+                        Padding="10"
+                        HorizontalOptions="Center"
+                        WidthRequest="200"
+                        Margin="0,10,0,0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <StackLayout Spacing="5">
+                        <BoxView HeightRequest="100"
+                                 BackgroundColor="White"
+                                 CornerRadius="5" />
+                        <Label Text="Classic"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{DynamicResource Gray900}" />
+                        <Label Text="Black &amp; White"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{DynamicResource Gray600}" />
+                    </StackLayout>
+                </Border>
             </StackLayout>
 
             <!-- Back Button -->

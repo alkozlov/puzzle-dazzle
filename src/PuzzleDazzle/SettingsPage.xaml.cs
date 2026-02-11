@@ -2,22 +2,20 @@ namespace PuzzleDazzle;
 
 public partial class SettingsPage : ContentPage
 {
-	private string _selectedStyle = "Classic";
-
 	public SettingsPage()
 	{
 		InitializeComponent();
 		LoadSettings();
-		UpdateStyleSelection();
 	}
 
 	private void LoadSettings()
 	{
 		// Load saved preferences from local storage
-		// For now, set defaults
 		SizePicker.SelectedIndex = Preferences.Get("MazeSize", 1); // Default: Medium
 		DifficultyPicker.SelectedIndex = Preferences.Get("MazeDifficulty", 1); // Default: Medium
-		_selectedStyle = Preferences.Get("VisualStyle", "Classic");
+		
+		// Visual style is always Classic for first release
+		Preferences.Set("VisualStyle", "Classic");
 	}
 
 	private void OnSizeChanged(object? sender, EventArgs e)
@@ -33,39 +31,6 @@ public partial class SettingsPage : ContentPage
 		if (DifficultyPicker.SelectedIndex >= 0)
 		{
 			Preferences.Set("MazeDifficulty", DifficultyPicker.SelectedIndex);
-		}
-	}
-
-	private void OnClassicStyleTapped(object? sender, EventArgs e)
-	{
-		_selectedStyle = "Classic";
-		Preferences.Set("VisualStyle", _selectedStyle);
-		UpdateStyleSelection();
-	}
-
-	private void OnSoftStyleTapped(object? sender, EventArgs e)
-	{
-		_selectedStyle = "Soft";
-		Preferences.Set("VisualStyle", _selectedStyle);
-		UpdateStyleSelection();
-	}
-
-	private void UpdateStyleSelection()
-	{
-		// Update border color to show selected style
-		if (_selectedStyle == "Classic")
-		{
-			ClassicBorder.Stroke = Color.FromArgb("#512BD4"); // Primary color
-			ClassicBorder.StrokeThickness = 3;
-			SoftBorder.Stroke = Color.FromArgb("#DDD");
-			SoftBorder.StrokeThickness = 2;
-		}
-		else
-		{
-			ClassicBorder.Stroke = Color.FromArgb("#DDD");
-			ClassicBorder.StrokeThickness = 2;
-			SoftBorder.Stroke = Color.FromArgb("#512BD4"); // Primary color
-			SoftBorder.StrokeThickness = 3;
 		}
 	}
 
