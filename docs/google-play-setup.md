@@ -5,7 +5,7 @@ Step-by-step guide for setting up your app in Google Play Console.
 ## Prerequisites
 
 - ✅ Google Play Developer Account (verified)
-- ✅ Signed AAB file: `com.companyname.puzzledazzle-Signed.aab`
+- ✅ Signed AAB file: `com.companyname.mazeledazzle-Signed.aab`
 - ✅ App descriptions and store listing text
 - ✅ Privacy policy document
 - ⏳ Screenshots (2-8 images)
@@ -28,7 +28,7 @@ Step-by-step guide for setting up your app in Google Play Console.
 2. Fill in the details:
 
 ### App Details
-- **App name**: Puzzle Dazzle
+- **App name**: Mazele Dazzle
 - **Default language**: English (United States)
 - **App or game**: App
 - **Free or paid**: Free
@@ -49,7 +49,7 @@ Google Play Console uses a task-based system. Complete each required task:
 #### Store Settings → Main Store Listing
 
 **App details:**
-- **App name**: Puzzle Dazzle - Maze Generator
+- **App name**: Mazele Dazzle - Maze Generator
 - **Short description** (80 chars max):
   ```
   Create and share custom mazes. Perfect for puzzles, education, and fun!
@@ -79,7 +79,7 @@ Google Play Console uses a task-based system. Complete each required task:
 - **Tags**: maze, puzzle, brain teaser, educational, creative
 
 **Contact details:**
-- **Email**: puzzle.dazzle.app@gmail.com (or your email)
+- **Email**: mazele.dazzle.app@gmail.com (or your email)
 - **Website**: Optional (can add later)
 - **Phone**: Optional
 
@@ -166,14 +166,14 @@ Complete if not done in Main Store Listing above.
 4. **Release**:
    - Click **"Create new release"**
    - **Upload AAB**:
-     - Upload: `com.companyname.puzzledazzle-Signed.aab`
+     - Upload: `com.companyname.mazeledazzle-Signed.aab`
      - Wait for processing (may take a few minutes)
    
    - **Release name**: 1.0 (Version 1)
    
    - **Release notes**: (What's new in this version)
      ```
-     Initial beta release of Puzzle Dazzle!
+     Initial beta release of Mazele Dazzle!
      
      Features:
      - Generate custom mazes with different sizes and difficulties

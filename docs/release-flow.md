@@ -1,6 +1,6 @@
 # Android App Release Process Guide
 
-Complete guide for releasing Puzzle Dazzle to Google Play Store.
+Complete guide for releasing Mazele Dazzle to Google Play Store.
 
 ---
 
@@ -141,7 +141,7 @@ Configure release tracks:
 
 ---
 
-## Puzzle Dazzle Monetization Plan
+## Mazele Dazzle Monetization Plan
 
 ### Free Tier (Ad-supported)
 - 5 mazes per day limit

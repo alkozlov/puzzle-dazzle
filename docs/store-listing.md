@@ -3,7 +3,7 @@
 This document contains all the text and metadata for the Google Play Store listing.
 
 ## App Title (50 characters max)
-**Puzzle Dazzle - Maze Generator**
+**Mazele Dazzle - Maze Generator**
 
 ## Short Description (80 characters max)
 Create and share custom mazes. Perfect for puzzles, education, and fun!
@@ -12,7 +12,7 @@ Create and share custom mazes. Perfect for puzzles, education, and fun!
 
 **Generate beautiful mazes in seconds!**
 
-Puzzle Dazzle is a simple and fun app for creating custom mazes. Whether you're looking for a quick puzzle to solve, educational materials for students, or just want to create something creative to share with friends - Puzzle Dazzle has you covered.
+Mazele Dazzle is a simple and fun app for creating custom mazes. Whether you're looking for a quick puzzle to solve, educational materials for students, or just want to create something creative to share with friends - Puzzle Dazzle has you covered.
 
 **KEY FEATURES:**
 
@@ -50,7 +50,7 @@ Start generating mazes right away with our free tier:
 
 **PREMIUM SUBSCRIPTION** (Optional)
 
-Unlock unlimited creativity with Puzzle Dazzle Premium:
+Unlock unlimited creativity with Mazele Dazzle Premium:
 - Unlimited maze generation
 - No daily limits
 - Support future development and new features
@@ -61,7 +61,7 @@ Subscription: $0.99/month or $9.99/year
 
 **PRIVACY FIRST**
 
-We respect your privacy. Puzzle Dazzle:
+We respect your privacy. Mazele Dazzle:
 - Does not collect personal information
 - Does not require account registration for basic use
 - Only uses minimal permissions needed for saving images
@@ -71,7 +71,7 @@ We respect your privacy. Puzzle Dazzle:
 
 Have questions or feedback? Contact us through the app or visit our website.
 
-Start creating amazing mazes today with Puzzle Dazzle!
+Start creating amazing mazes today with Mazele Dazzle!
 
 ---
 
@@ -94,15 +94,15 @@ Application
 
 ## Privacy Policy URL
 
-https://puzzledazzle.app/privacy-policy (placeholder - needs to be created)
+https://mazeledazzle.app/privacy-policy (placeholder - needs to be created)
 
 ## Contact Email
 
-puzzle.dazzle.app@gmail.com (placeholder - update with your email)
+mazele.dazzle.app@gmail.com (placeholder - update with your email)
 
 ## Website (optional)
 
-https://puzzledazzle.app (placeholder - can be created later)
+https://mazeledazzle.app (placeholder - can be created later)
 
 ---
 
@@ -136,7 +136,7 @@ You'll need 2-8 screenshots showing:
 This is the banner image that appears at the top of your store listing.
 
 **Design suggestions**:
-- App name "Puzzle Dazzle"
+- App name "Mazele Dazzle"
 - Tagline: "Create Beautiful Mazes"
 - Maze visual element
 - App icon

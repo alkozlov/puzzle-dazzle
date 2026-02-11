@@ -1,16 +1,16 @@
-# Privacy Policy for Puzzle Dazzle
+# Privacy Policy for Mazele Dazzle
 
-**Last Updated**: February 11, 2026
+**Last Updated**: February 12, 2026
 
 ## Overview
 
-Puzzle Dazzle ("we", "our", or "the app") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use our mobile application.
+Mazele Dazzle ("we", "our", or "the app") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use our mobile application.
 
 ## Information We Collect
 
 ### Information We DO NOT Collect
 
-Puzzle Dazzle is designed with privacy in mind. We do **NOT** collect, store, or transmit:
+Mazele Dazzle is designed with privacy in mind. We do **NOT** collect, store, or transmit:
 - Personal identification information (name, email, phone number)
 - Location data
 - Device identifiers
@@ -28,7 +28,7 @@ This data remains on your device and is never sent to us or any third party.
 
 ### Permissions Required
 
-Puzzle Dazzle requests the following permissions:
+Mazele Dazzle requests the following permissions:
 
 **Storage Access (WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)**
 - **Purpose**: To save generated mazes as PNG images to your device
@@ -48,7 +48,7 @@ When you purchase a premium subscription, payment processing is handled entirely
 
 ### No Analytics or Advertising
 
-Puzzle Dazzle does **NOT** use:
+Mazele Dazzle does **NOT** use:
 - Analytics services (no Google Analytics, Firebase, etc.)
 - Advertising networks
 - Crash reporting services
@@ -60,7 +60,7 @@ Since we do not collect or transmit any personal data, there is minimal security
 
 ## Children's Privacy
 
-Puzzle Dazzle is suitable for all ages and does not collect any information from children or adults. We comply with the Children's Online Privacy Protection Act (COPPA) by not collecting any personal information.
+Mazele Dazzle is suitable for all ages and does not collect any information from children or adults. We comply with the Children's Online Privacy Protection Act (COPPA) by not collecting any personal information.
 
 ## Changes to This Policy
 
@@ -80,9 +80,9 @@ Since we do not collect or store your personal information, there is no data for
 
 If you have any questions about this Privacy Policy, please contact us:
 
-**Email**: puzzle.dazzle.app@gmail.com
+**Email**: mazele.dazzle.app@gmail.com
 
-**App**: Puzzle Dazzle  
+**App**: Mazele Dazzle  
 **Developer**: Aliaksei Kazlou  
 **Location**: Poland
 
@@ -95,4 +95,4 @@ If you have any questions about this Privacy Policy, please contact us:
 **What we share**: Nothing  
 **What stays on your device**: App settings and maze generation count
 
-Puzzle Dazzle is a privacy-first app that doesn't collect any of your data.
+Mazele Dazzle is a privacy-first app that doesn't collect any of your data.

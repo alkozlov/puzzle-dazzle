@@ -24,10 +24,10 @@
 		<EnableXamlHotReload>true</EnableXamlHotReload>
 
 		<!-- Display name -->
-		<ApplicationTitle>PuzzleDazzle</ApplicationTitle>
+		<ApplicationTitle>MazeleDazzle</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.puzzledazzle</ApplicationId>
+		<ApplicationId>com.companyname.mazeledazzle</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -47,8 +47,8 @@
 	<!-- Android Release Signing Configuration -->
 	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net9.0-android'">
 		<AndroidKeyStore>true</AndroidKeyStore>
-		<AndroidSigningKeyStore>..\..\puzzledazzle.keystore</AndroidSigningKeyStore>
-		<AndroidSigningKeyAlias>puzzledazzle</AndroidSigningKeyAlias>
+		<AndroidSigningKeyStore>..\..\mazeledazzle.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>mazeledazzle</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass>210889alex</AndroidSigningKeyPass>
 		<AndroidSigningStorePass>210889alex</AndroidSigningStorePass>
 		<!-- Enable linking and AOT for optimized release build -->

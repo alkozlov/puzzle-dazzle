@@ -1,6 +1,6 @@
 # Building Release APK/AAB
 
-This document describes how to build a signed release version of Puzzle Dazzle for distribution.
+This document describes how to build a signed release version of Mazele Dazzle for distribution.
 
 ## Quick Build Command
 
@@ -18,19 +18,19 @@ src/PuzzleDazzle/bin/Release/net9.0-android/publish/
 ```
 
 Generated files:
-- `com.companyname.puzzledazzle-Signed.apk` (~28 MB) - For direct installation or sideloading
-- `com.companyname.puzzledazzle-Signed.aab` (~28 MB) - For Google Play Store upload (recommended)
+- `com.companyname.mazeledazzle-Signed.apk` (~28 MB) - For direct installation or sideloading
+- `com.companyname.mazeledazzle-Signed.aab` (~28 MB) - For Google Play Store upload (recommended)
 
 ## Prerequisites
 
 ### Keystore File
-The project uses `puzzledazzle.keystore` in the project root for signing.
+The project uses `mazeledazzle.keystore` in the project root for signing.
 
 **IMPORTANT**: This file contains sensitive signing keys and is excluded from git via `.gitignore`.
 
 **Keystore Details:**
-- Location: `puzzledazzle.keystore` (project root)
-- Alias: `puzzledazzle`
+- Location: `mazeledazzle.keystore` (project root)
+- Alias: `mazeledazzle`
 - Algorithm: RSA 2048-bit
 - Validity: 10,000 days (~27 years)
 - Owner: CN=Aliaksei Kazlou, OU=Personal, O=Personal, L=Wysoka, ST=Dolnoslaskie, C=PL
@@ -44,8 +44,8 @@ The release signing is configured in `src/PuzzleDazzle/PuzzleDazzle.csproj`:
 ```xml
 <PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net9.0-android'">
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>..\..\puzzledazzle.keystore</AndroidSigningKeyStore>
-    <AndroidSigningKeyAlias>puzzledazzle</AndroidSigningKeyAlias>
+    <AndroidSigningKeyStore>..\..\mazeledazzle.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias>mazeledazzle</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>***</AndroidSigningKeyPass>
     <AndroidSigningStorePass>***</AndroidSigningStorePass>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
@@ -57,7 +57,7 @@ The release signing is configured in `src/PuzzleDazzle/PuzzleDazzle.csproj`:
 ## Distribution Options
 
 ### Option 1: Direct APK Distribution (Testing/Friends)
-Use the `com.companyname.puzzledazzle-Signed.apk` file:
+Use the `com.companyname.mazeledazzle-Signed.apk` file:
 1. Copy APK to device or share via email/cloud
 2. Enable "Install from unknown sources" on device
 3. Tap APK file to install
@@ -65,7 +65,7 @@ Use the `com.companyname.puzzledazzle-Signed.apk` file:
 **Best for**: Early testing, sharing with friends/family
 
 ### Option 2: Google Play Store (Production)
-Use the `com.companyname.puzzledazzle-Signed.aab` file:
+Use the `com.companyname.mazeledazzle-Signed.aab` file:
 1. Create Google Play Developer account ($25 one-time fee)
 2. Create app listing in Play Console
 3. Upload AAB to desired track (Internal/Closed/Open/Production)
@@ -85,7 +85,7 @@ If you see "Permission denied" or "Renaming temporary file failed":
 If keystore is missing, you'll need to regenerate it (this will be a NEW key, incompatible with previous builds):
 
 ```powershell
-keytool -genkey -v -keystore puzzledazzle.keystore -alias puzzledazzle -keyalg RSA -keysize 2048 -validity 10000 -storepass YOUR_PASSWORD -keypass YOUR_PASSWORD -dname "CN=Aliaksei Kazlou, OU=Personal, O=Personal, L=Wysoka, ST=Dolnoslaskie, C=PL"
+keytool -genkey -v -keystore mazeledazzle.keystore -alias mazeledazzle -keyalg RSA -keysize 2048 -validity 10000 -storepass YOUR_PASSWORD -keypass YOUR_PASSWORD -dname "CN=Aliaksei Kazlou, OU=Personal, O=Personal, L=Wysoka, ST=Dolnoslaskie, C=PL"
 ```
 
 **WARNING**: A new keystore means you cannot update existing installations!

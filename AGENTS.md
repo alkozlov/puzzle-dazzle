@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Puzzle Dazzle** is a mobile maze generation app for Android (iOS planned for future).
+**Mazele Dazzle** is a mobile maze generation app for Android (iOS planned for future).
 
 ### Key Features
 - Generate mazes with configurable size and difficulty

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Puzzle Dazzle uses the **Recursive Backtracking** algorithm to generate perfect mazes. A perfect maze is defined as a maze where there is exactly one path between any two points in the maze, with no loops or isolated sections.
+Mazele Dazzle uses the **Recursive Backtracking** algorithm to generate perfect mazes. A perfect maze is defined as a maze where there is exactly one path between any two points in the maze, with no loops or isolated sections.
 
 ## Algorithm: Recursive Backtracking
 
@@ -207,7 +207,7 @@ public async Task<Maze> GenerateAsync(
 
 ## Alternative Algorithms (Future Enhancements)
 
-While Puzzle Dazzle currently uses Recursive Backtracking, other algorithms could be considered for future versions:
+While Mazele Dazzle currently uses Recursive Backtracking, other algorithms could be considered for future versions:
 
 ### Prim's Algorithm
 - **Characteristics**: Creates mazes with more branching, shorter passages
@@ -249,4 +249,4 @@ While Puzzle Dazzle currently uses Recursive Backtracking, other algorithms coul
 
 ## Conclusion
 
-The Recursive Backtracking algorithm provides an excellent balance of simplicity, performance, and maze quality for Puzzle Dazzle. It generates perfect mazes quickly, with natural-looking passages and consistent difficulty. The implementation supports asynchronous generation, progress tracking, and difficulty-based modifications, making it suitable for a wide range of use cases and user skill levels.
+The Recursive Backtracking algorithm provides an excellent balance of simplicity, performance, and maze quality for Mazele Dazzle. It generates perfect mazes quickly, with natural-looking passages and consistent difficulty. The implementation supports asynchronous generation, progress tracking, and difficulty-based modifications, making it suitable for a wide range of use cases and user skill levels.
