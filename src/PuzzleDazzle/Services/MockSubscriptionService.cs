@@ -6,7 +6,7 @@ namespace PuzzleDazzle.Services;
 /// Mock implementation of ISubscriptionService.
 /// In DEBUG builds, returns true (premium) for unlimited local development.
 /// In RELEASE builds, returns false (free user).
-/// Will be replaced with Google Play Billing implementation in puzzle-e36.
+/// Used for testing when Google Play Billing is not available.
 /// </summary>
 public class MockSubscriptionService : ISubscriptionService
 {
@@ -19,5 +19,17 @@ public class MockSubscriptionService : ISubscriptionService
 		// Release builds: Free tier with limits
 		return Task.FromResult(false);
 #endif
+	}
+
+	public Task<bool> PurchaseSubscriptionAsync(string productId)
+	{
+		// Mock implementation always fails (no billing available)
+		return Task.FromResult(false);
+	}
+
+	public Task RefreshSubscriptionStatusAsync()
+	{
+		// Mock implementation does nothing
+		return Task.CompletedTask;
 	}
 }

@@ -1,4 +1,6 @@
 using Microsoft.Extensions.Logging;
+using PuzzleDazzle.Core.Services;
+using PuzzleDazzle.Services;
 
 namespace PuzzleDazzle;
 
@@ -18,6 +20,12 @@ public static class MauiProgram
 
 #if DEBUG
 		builder.Logging.AddDebug();
+		
+		// Use mock subscription service in debug for unlimited local development
+		builder.Services.AddSingleton<ISubscriptionService, MockSubscriptionService>();
+#else
+		// Use real Google Play Billing in release builds
+		builder.Services.AddSingleton<ISubscriptionService, GooglePlaySubscriptionService>();
 #endif
 
 		return builder.Build();
