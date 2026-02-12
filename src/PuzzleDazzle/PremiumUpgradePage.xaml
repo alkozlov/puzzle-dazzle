@@ -16,7 +16,7 @@
                        FontSize="48"
                        HorizontalTextAlignment="Center"
                        TextColor="{DynamicResource Tertiary}" />
-                <Label Text="Puzzle Dazzle Premium"
+                <Label Text="Mazele Dazzle Premium"
                        FontSize="28"
                        FontAttributes="Bold"
                        HorizontalTextAlignment="Center"

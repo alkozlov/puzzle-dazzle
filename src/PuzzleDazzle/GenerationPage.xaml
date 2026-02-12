@@ -27,7 +27,7 @@
                         VerticalOptions="Center"
                         Padding="40"
                         Spacing="20">
-                <Label Text="Puzzle Dazzle"
+                <Label Text="Mazele Dazzle"
                        FontSize="36"
                        FontAttributes="Bold"
                        HorizontalTextAlignment="Center"

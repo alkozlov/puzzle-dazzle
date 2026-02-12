@@ -12,7 +12,7 @@ Create and share custom mazes. Perfect for puzzles, education, and fun!
 
 **Generate beautiful mazes in seconds!**
 
-Mazele Dazzle is a simple and fun app for creating custom mazes. Whether you're looking for a quick puzzle to solve, educational materials for students, or just want to create something creative to share with friends - Puzzle Dazzle has you covered.
+Mazele Dazzle is a simple and fun app for creating custom mazes. Whether you're looking for a quick puzzle to solve, educational materials for students, or just want to create something creative to share with friends - Mazele Dazzle has you covered.
 
 **KEY FEATURES:**
 
