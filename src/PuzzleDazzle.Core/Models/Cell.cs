@@ -50,6 +50,12 @@ public class Cell
 	/// </summary>
 	public bool IsEnd { get; set; }
 
+	/// <summary>
+	/// Indicates if this cell is active (part of the maze shape).
+	/// Inactive cells are outside the maze shape and should be ignored.
+	/// </summary>
+	public bool IsActive { get; set; }
+
 	public Cell(int row, int column)
 	{
 		Row = row;
@@ -64,6 +70,7 @@ public class Cell
 		Visited = false;
 		IsStart = false;
 		IsEnd = false;
+		IsActive = true; // By default, all cells are active
 	}
 
 	/// <summary>

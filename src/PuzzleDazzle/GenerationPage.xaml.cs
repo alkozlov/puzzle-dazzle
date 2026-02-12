@@ -96,6 +96,7 @@ public partial class GenerationPage : ContentPage
 			// Get settings from preferences
 			int sizeIndex = Preferences.Get("MazeSize", 1); // 0=Small, 1=Medium, 2=Large
 			int difficultyIndex = Preferences.Get("MazeDifficulty", 1); // 0=Easy, 1=Medium, 2=Hard
+			int shapeIndex = Preferences.Get("MazeShape", 0); // 0=Rectangle, 1=Circle, 2=Diamond, 3=Heart
 
 			// Map size index to dimensions
 			int rows, columns;
@@ -115,13 +116,17 @@ public partial class GenerationPage : ContentPage
 			// Map difficulty index to enum
 			var difficulty = (MazeDifficulty)difficultyIndex;
 
+			// Map shape index to enum and create shape
+			var shapeType = (ShapeType)shapeIndex;
+			var shape = MazeShape.FromType(shapeType, rows, columns);
+
 			// Generate maze asynchronously using Recursive Backtracking algorithm
 			var progress = new Progress<double>(p =>
 			{
 				// Progress updates (could show percentage if desired)
 			});
 
-			_currentMaze = await _generator.GenerateAsync(rows, columns, difficulty, progress);
+			_currentMaze = await _generator.GenerateAsync(rows, columns, difficulty, progress, shape);
 
 			// Record the generation for usage tracking
 			_usageTracking.RecordGeneration();

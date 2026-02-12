@@ -26,6 +26,7 @@ public interface IMazeGenerationAlgorithm
     /// <param name="difficulty">Difficulty level affecting maze complexity.</param>
     /// <param name="progress">Optional progress reporter for long-running operations.</param>
     /// <param name="random">Random number generator for reproducible results.</param>
+    /// <param name="shape">Optional shape mask defining which cells are active.</param>
     /// <returns>A generated maze.</returns>
-    Maze Generate(int rows, int columns, MazeDifficulty difficulty, IProgress<double>? progress, Random random);
+    Maze Generate(int rows, int columns, MazeDifficulty difficulty, IProgress<double>? progress, Random random, MazeShape? shape = null);
 }

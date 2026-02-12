@@ -13,12 +13,21 @@ public class RecursiveBacktrackingAlgorithm : IMazeGenerationAlgorithm
 
     public string Description => "Creates perfect mazes with long, winding corridors using depth-first search. Fast and memory efficient.";
 
-    public Maze Generate(int rows, int columns, MazeDifficulty difficulty, IProgress<double>? progress, Random random)
+    public Maze Generate(int rows, int columns, MazeDifficulty difficulty, IProgress<double>? progress, Random random, MazeShape? shape = null)
     {
-        var maze = new Maze(rows, columns, difficulty);
+        var maze = new Maze(rows, columns, difficulty, shape);
         
-        // Total cells to visit for progress tracking
-        int totalCells = rows * columns;
+        // Count only active cells for progress tracking
+        int totalCells = 0;
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                if (maze.Grid[row, col].IsActive)
+                    totalCells++;
+            }
+        }
+        
         int visitedCells = 0;
 
         // Start from the start cell

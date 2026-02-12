@@ -23,19 +23,24 @@ public class Maze
 	/// <summary>
 	/// The starting cell of the maze.
 	/// </summary>
-	public Cell StartCell { get; private set; }
+	public Cell StartCell { get; private set; } = null!;
 
 	/// <summary>
 	/// The ending cell of the maze.
 	/// </summary>
-	public Cell EndCell { get; private set; }
+	public Cell EndCell { get; private set; } = null!;
 
 	/// <summary>
 	/// Difficulty level of the maze (affects generation algorithm).
 	/// </summary>
 	public MazeDifficulty Difficulty { get; private set; }
 
-	public Maze(int rows, int columns, MazeDifficulty difficulty = MazeDifficulty.Medium)
+	/// <summary>
+	/// The shape defining which cells are active in the maze.
+	/// </summary>
+	public MazeShape Shape { get; private set; }
+
+	public Maze(int rows, int columns, MazeDifficulty difficulty = MazeDifficulty.Medium, MazeShape? shape = null)
 	{
 		if (rows < 5 || columns < 5)
 			throw new ArgumentException("Maze must be at least 5x5 cells");
@@ -43,6 +48,9 @@ public class Maze
 		Rows = rows;
 		Columns = columns;
 		Difficulty = difficulty;
+		
+		// Use provided shape or default to rectangle
+		Shape = shape ?? MazeShape.Rectangle(rows, columns);
 
 		// Initialize the grid
 		Grid = new Cell[rows, columns];
@@ -51,14 +59,58 @@ public class Maze
 			for (int col = 0; col < columns; col++)
 			{
 				Grid[row, col] = new Cell(row, col);
+				
+				// Mark inactive cells based on shape mask
+				if (!Shape.IsActive(row, col))
+				{
+					Grid[row, col].IsActive = false;
+				}
 			}
 		}
 
-		// Set start and end cells
-		StartCell = Grid[0, 0];
+		// Set start and end cells to first and last active cells
+		SetStartAndEndCells();
+	}
+	
+	/// <summary>
+	/// Sets the start and end cells to the first and last active cells in the maze.
+	/// </summary>
+	private void SetStartAndEndCells()
+	{
+		Cell? firstActive = null;
+		Cell? lastActive = null;
+		
+		// Find first active cell (top-left to bottom-right)
+		for (int row = 0; row < Rows && firstActive == null; row++)
+		{
+			for (int col = 0; col < Columns && firstActive == null; col++)
+			{
+				if (Grid[row, col].IsActive)
+				{
+					firstActive = Grid[row, col];
+				}
+			}
+		}
+		
+		// Find last active cell (bottom-right to top-left)
+		for (int row = Rows - 1; row >= 0 && lastActive == null; row--)
+		{
+			for (int col = Columns - 1; col >= 0 && lastActive == null; col--)
+			{
+				if (Grid[row, col].IsActive)
+				{
+					lastActive = Grid[row, col];
+				}
+			}
+		}
+		
+		if (firstActive == null || lastActive == null)
+			throw new InvalidOperationException("Maze shape must have at least 2 active cells");
+		
+		StartCell = firstActive;
 		StartCell.IsStart = true;
-
-		EndCell = Grid[rows - 1, columns - 1];
+		
+		EndCell = lastActive;
 		EndCell.IsEnd = true;
 	}
 
@@ -74,7 +126,7 @@ public class Maze
 	}
 
 	/// <summary>
-	/// Gets all unvisited neighbors of a cell.
+	/// Gets all unvisited neighbors of a cell (only active cells).
 	/// </summary>
 	public List<Cell> GetUnvisitedNeighbors(Cell cell)
 	{
@@ -82,22 +134,22 @@ public class Maze
 
 		// Check top neighbor
 		var top = GetCell(cell.Row - 1, cell.Column);
-		if (top != null && !top.Visited)
+		if (top != null && !top.Visited && top.IsActive)
 			neighbors.Add(top);
 
 		// Check right neighbor
 		var right = GetCell(cell.Row, cell.Column + 1);
-		if (right != null && !right.Visited)
+		if (right != null && !right.Visited && right.IsActive)
 			neighbors.Add(right);
 
 		// Check bottom neighbor
 		var bottom = GetCell(cell.Row + 1, cell.Column);
-		if (bottom != null && !bottom.Visited)
+		if (bottom != null && !bottom.Visited && bottom.IsActive)
 			neighbors.Add(bottom);
 
 		// Check left neighbor
 		var left = GetCell(cell.Row, cell.Column - 1);
-		if (left != null && !left.Visited)
+		if (left != null && !left.Visited && left.IsActive)
 			neighbors.Add(left);
 
 		return neighbors;

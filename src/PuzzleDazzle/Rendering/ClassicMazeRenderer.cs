@@ -42,6 +42,11 @@ public class ClassicMazeRenderer : IMazeRenderer
 			for (int col = 0; col < maze.Columns; col++)
 			{
 				var cell = maze.Grid[row, col];
+				
+				// Skip inactive cells (outside the maze shape)
+				if (!cell.IsActive)
+					continue;
+				
 				float x = offsetX + (col * cellSize);
 				float y = offsetY + (row * cellSize);
 

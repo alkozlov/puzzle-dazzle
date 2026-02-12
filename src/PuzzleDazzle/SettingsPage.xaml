@@ -47,6 +47,30 @@
                 </Picker>
             </StackLayout>
 
+            <!-- Shape Section -->
+            <StackLayout Spacing="10">
+                <Label Text="Maze Shape"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource Primary}" />
+                <Label Text="Choose different shapes for variety"
+                       FontSize="13"
+                       TextColor="{DynamicResource Gray500}"
+                       Margin="0,-5,0,0" />
+                
+                <Picker x:Name="ShapePicker"
+                        Title="Select shape"
+                        FontSize="16"
+                        SelectedIndexChanged="OnShapeChanged">
+                    <Picker.Items>
+                        <x:String>Rectangle</x:String>
+                        <x:String>Circle</x:String>
+                        <x:String>Diamond</x:String>
+                        <x:String>Heart</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
             <!-- Upgrade to Premium -->
             <Border Stroke="{DynamicResource Tertiary}"
                     StrokeThickness="2"

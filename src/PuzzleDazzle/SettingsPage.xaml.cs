@@ -13,6 +13,7 @@ public partial class SettingsPage : ContentPage
 		// Load saved preferences from local storage
 		SizePicker.SelectedIndex = Preferences.Get("MazeSize", 1); // Default: Medium
 		DifficultyPicker.SelectedIndex = Preferences.Get("MazeDifficulty", 1); // Default: Medium
+		ShapePicker.SelectedIndex = Preferences.Get("MazeShape", 0); // Default: Rectangle
 		
 		// Visual style is always Classic for first release
 		Preferences.Set("VisualStyle", "Classic");
@@ -31,6 +32,14 @@ public partial class SettingsPage : ContentPage
 		if (DifficultyPicker.SelectedIndex >= 0)
 		{
 			Preferences.Set("MazeDifficulty", DifficultyPicker.SelectedIndex);
+		}
+	}
+
+	private void OnShapeChanged(object? sender, EventArgs e)
+	{
+		if (ShapePicker.SelectedIndex >= 0)
+		{
+			Preferences.Set("MazeShape", ShapePicker.SelectedIndex);
 		}
 	}
 

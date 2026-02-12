@@ -30,14 +30,16 @@ public class MazeGenerator
 	/// <param name="columns">Number of columns in the maze.</param>
 	/// <param name="difficulty">Difficulty level affecting maze complexity.</param>
 	/// <param name="progress">Optional progress callback (0.0 to 1.0).</param>
+	/// <param name="shape">Optional shape mask defining which cells are active (defaults to rectangle).</param>
 	/// <returns>A generated Maze object.</returns>
 	public async Task<Maze> GenerateAsync(
 		int rows, 
 		int columns, 
 		MazeDifficulty difficulty = MazeDifficulty.Medium,
-		IProgress<double>? progress = null)
+		IProgress<double>? progress = null,
+		MazeShape? shape = null)
 	{
-		return await Task.Run(() => Generate(rows, columns, difficulty, progress));
+		return await Task.Run(() => Generate(rows, columns, difficulty, progress, shape));
 	}
 
 	/// <summary>
@@ -47,14 +49,16 @@ public class MazeGenerator
 	/// <param name="columns">Number of columns in the maze.</param>
 	/// <param name="difficulty">Difficulty level affecting maze complexity.</param>
 	/// <param name="progress">Optional progress callback (0.0 to 1.0).</param>
+	/// <param name="shape">Optional shape mask defining which cells are active (defaults to rectangle).</param>
 	/// <returns>A generated Maze object.</returns>
 	public Maze Generate(
 		int rows, 
 		int columns, 
 		MazeDifficulty difficulty = MazeDifficulty.Medium,
-		IProgress<double>? progress = null)
+		IProgress<double>? progress = null,
+		MazeShape? shape = null)
 	{
 		// Generate the maze using Recursive Backtracking algorithm
-		return _algorithm.Generate(rows, columns, difficulty, progress, _random);
+		return _algorithm.Generate(rows, columns, difficulty, progress, _random, shape);
 	}
 }
