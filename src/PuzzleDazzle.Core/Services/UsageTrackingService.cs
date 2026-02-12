@@ -38,14 +38,21 @@ public class UsageTrackingService
 
 	/// <summary>
 	/// Returns true if the user can generate a maze.
-	/// Premium users always can. Free users are limited to DailyFreeLimit.
+	/// In DEBUG builds: Always returns true for unlimited local development.
+	/// In RELEASE builds: Premium users always can. Free users are limited to DailyFreeLimit.
 	/// </summary>
 	public async Task<bool> CanGenerateAsync()
 	{
+#if DEBUG
+		// Debug builds: Unlimited access for local development
+		return true;
+#else
+		// Release builds: Check subscription and limits
 		if (await _subscriptionService.IsPremiumAsync())
 			return true;
 
 		return GetRemainingCount() > 0;
+#endif
 	}
 
 	/// <summary>
