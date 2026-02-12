@@ -144,7 +144,13 @@ public class GooglePlaySubscriptionService : Java.Lang.Object, ISubscriptionServ
 			var productDetails = productDetailsResult.ProductDetails.First();
 
 			// Get the offer token (required for subscriptions)
-			var offerToken = productDetails.SubscriptionOfferDetails?.FirstOrDefault()?.OfferToken;
+			var subscriptionOffers = productDetails.GetSubscriptionOfferDetails();
+			if (subscriptionOffers == null || !subscriptionOffers.Any())
+			{
+				return false;
+			}
+
+			var offerToken = subscriptionOffers.First().OfferToken;
 			if (string.IsNullOrEmpty(offerToken))
 			{
 				return false;

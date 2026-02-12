@@ -49,7 +49,7 @@ public partial class PremiumUpgradePage : ContentPage
 				// Don't show error if user cancelled
 			}
 		}
-		catch (Exception ex)
+		catch (Exception)
 		{
 			await DisplayAlert(
 				"Error",
