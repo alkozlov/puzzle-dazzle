@@ -80,7 +80,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
 		<PackageReference Include="SkiaSharp" Version="2.88.8" />
-		<PackageReference Include="Xamarin.AndroidX.Billing" Version="7.1.1.1" />
+		<PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
