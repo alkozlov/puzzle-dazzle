@@ -13,7 +13,6 @@ public partial class SettingsPage : ContentPage
 		// Load saved preferences from local storage
 		SizePicker.SelectedIndex = Preferences.Get("MazeSize", 1); // Default: Medium
 		DifficultyPicker.SelectedIndex = Preferences.Get("MazeDifficulty", 1); // Default: Medium
-		AlgorithmPicker.SelectedIndex = Preferences.Get("MazeAlgorithm", 0); // Default: Recursive Backtracking
 		
 		// Visual style is always Classic for first release
 		Preferences.Set("VisualStyle", "Classic");
@@ -32,14 +31,6 @@ public partial class SettingsPage : ContentPage
 		if (DifficultyPicker.SelectedIndex >= 0)
 		{
 			Preferences.Set("MazeDifficulty", DifficultyPicker.SelectedIndex);
-		}
-	}
-
-	private void OnAlgorithmChanged(object? sender, EventArgs e)
-	{
-		if (AlgorithmPicker.SelectedIndex >= 0)
-		{
-			Preferences.Set("MazeAlgorithm", AlgorithmPicker.SelectedIndex);
 		}
 	}
 
