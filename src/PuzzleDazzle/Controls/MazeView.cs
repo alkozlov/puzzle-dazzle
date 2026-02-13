@@ -13,13 +13,10 @@ public class MazeView : GraphicsView
 	private const float MinScale = 1.0f;
 	private const float MaxScale = 4.0f;
 
-	// Current transform state (in canvas/content coordinates)
+	// Current transform state
 	private float _scale = 1.0f;
 	private float _translateX = 0f;
 	private float _translateY = 0f;
-
-	// Pinch tracking
-	private float _pinchStartScale = 1.0f;
 
 	// Pan tracking
 	private float _panStartTx = 0f;
@@ -73,51 +70,45 @@ public class MazeView : GraphicsView
 	/// </summary>
 	private void ClampTranslation()
 	{
-		// Maximum pan is half of the "extra" canvas space created by the zoom
 		float maxTx = (float)(Width * (_scale - 1)) / 2f;
 		float maxTy = (float)(Height * (_scale - 1)) / 2f;
-
 		_translateX = Math.Clamp(_translateX, -maxTx, maxTx);
 		_translateY = Math.Clamp(_translateY, -maxTy, maxTy);
 	}
 
 	private void OnPinchUpdated(object? sender, PinchGestureUpdatedEventArgs e)
 	{
-		switch (e.Status)
+		// e.Scale is a per-frame delta ratio (e.g. 1.02 = "2% larger than last frame").
+		// Multiply against the current scale each frame to accumulate smoothly.
+		// Do NOT multiply against a "start scale" — that resets to start on every event
+		// and causes the image to jerk wildly.
+		if (e.Status != GestureStatus.Running)
+			return;
+
+		float newScale = Math.Clamp(_scale * (float)e.Scale, MinScale, MaxScale);
+
+		if (newScale <= MinScale)
 		{
-			case GestureStatus.Started:
-				_pinchStartScale = _scale;
-				break;
-
-			case GestureStatus.Running:
-				float newScale = _pinchStartScale * (float)e.Scale;
-				_scale = Math.Clamp(newScale, MinScale, MaxScale);
-
-				// Reset pan when fully zoomed out
-				if (_scale <= MinScale)
-				{
-					_scale = MinScale;
-					_translateX = 0f;
-					_translateY = 0f;
-				}
-				else
-				{
-					ClampTranslation();
-				}
-
-				ApplyTransform();
-				break;
-
-			case GestureStatus.Completed:
-				if (_scale < MinScale)
-				{
-					_scale = MinScale;
-					_translateX = 0f;
-					_translateY = 0f;
-					ApplyTransform();
-				}
-				break;
+			_scale = MinScale;
+			_translateX = 0f;
+			_translateY = 0f;
 		}
+		else
+		{
+			// Zoom towards the pinch centre so the content under the fingers stays fixed.
+			// ScaleOrigin is in [0,1] relative to the view size.
+			float originX = (float)(e.ScaleOrigin.X * Width);
+			float originY = (float)(e.ScaleOrigin.Y * Height);
+
+			float ratio = newScale / _scale;
+			_translateX = originX + (_translateX - originX) * ratio;
+			_translateY = originY + (_translateY - originY) * ratio;
+
+			_scale = newScale;
+			ClampTranslation();
+		}
+
+		ApplyTransform();
 	}
 
 	private void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
@@ -134,10 +125,8 @@ public class MazeView : GraphicsView
 				break;
 
 			case GestureStatus.Running:
-				// TotalX/Y are in device-independent units; divide by scale so
-				// panning feels 1:1 with finger movement at any zoom level
-				_translateX = _panStartTx + (float)e.TotalX / _scale;
-				_translateY = _panStartTy + (float)e.TotalY / _scale;
+				_translateX = _panStartTx + (float)e.TotalX;
+				_translateY = _panStartTy + (float)e.TotalY;
 				ClampTranslation();
 				ApplyTransform();
 				break;
@@ -168,7 +157,7 @@ public class MazeView : GraphicsView
 
 			canvas.SaveState();
 
-			// Apply zoom/pan: translate to center, scale, offset by pan, then translate back
+			// Apply zoom centred on the canvas, then offset by pan translation
 			float cx = dirtyRect.Width / 2f;
 			float cy = dirtyRect.Height / 2f;
 			canvas.Translate(cx + TranslateX, cy + TranslateY);
