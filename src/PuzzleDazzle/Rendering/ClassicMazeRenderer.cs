@@ -3,13 +3,14 @@ using PuzzleDazzle.Core.Models;
 namespace PuzzleDazzle.Rendering;
 
 /// <summary>
-/// Classic black and white maze renderer.
-/// Renders mazes with thin black walls on white background.
+/// Classic maze renderer.
+/// Renders mazes with colored walls on white background.
 /// </summary>
 public class ClassicMazeRenderer : IMazeRenderer
 {
-	private const float WallThickness = 2.0f;
+	private const float WallThickness = 3.5f;
 	private const float MinCellSize = 10.0f;
+	private static readonly Color WallColor = Color.FromArgb("#D94F3D");
 
 	/// <summary>
 	/// Renders the maze using classic black and white style.
@@ -32,9 +33,11 @@ public class ClassicMazeRenderer : IMazeRenderer
 		canvas.FillColor = Colors.White;
 		canvas.FillRectangle(0, 0, width, height);
 
-		// Draw maze walls in black
-		canvas.StrokeColor = Colors.Black;
+		// Draw maze walls with styled color and smooth joins
+		canvas.StrokeColor = WallColor;
 		canvas.StrokeSize = WallThickness;
+		canvas.StrokeLineCap = LineCap.Round;
+		canvas.StrokeLineJoin = LineJoin.Round;
 
 		// Draw cells
 		for (int row = 0; row < maze.Rows; row++)

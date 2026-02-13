@@ -16,7 +16,7 @@
                FontSize="14"
                HorizontalTextAlignment="Center"
                TextColor="{DynamicResource Gray600}"
-               Padding="0,10,0,0" />
+               Padding="0,6,0,0" />
 
         <!-- Main Content Area -->
         <Grid Grid.Row="1">
@@ -57,15 +57,14 @@
             <!-- Maze Display Area -->
             <Border x:Name="MazeDisplayArea"
                     IsVisible="False"
-                    Stroke="{DynamicResource Gray300}"
-                    StrokeThickness="2"
+                    StrokeThickness="0"
                     BackgroundColor="White"
-                    Padding="5"
-                    Margin="20">
+                    Padding="4"
+                    Margin="4">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10" />
+                    <RoundRectangle CornerRadius="0" />
                 </Border.StrokeShape>
-                
+
                 <!-- Actual maze visualization -->
                 <controls:MazeView x:Name="MazeView" />
             </Border>
@@ -74,7 +73,7 @@
         <!-- Bottom Button Panel -->
         <Border Grid.Row="2"
                 BackgroundColor="White"
-                Padding="20,15"
+                Padding="16,10"
                 StrokeThickness="0">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="0" />

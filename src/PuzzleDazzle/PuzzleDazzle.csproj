@@ -44,6 +44,20 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<!-- Android Debug configuration for physical device sideloading -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' and '$(TargetFramework)' == 'net9.0-android'">
+		<!-- Disable Fast Deployment so all assemblies are bundled inside the APK.
+		     Fast Deployment pushes assemblies separately via adb during dotnet -t:Run,
+		     but when the APK is installed standalone the assemblies are missing and the app crashes. -->
+		<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+		<!-- Sign with the same keystore as Release so Play Protect doesn't block sideloading -->
+		<AndroidKeyStore>true</AndroidKeyStore>
+		<AndroidSigningKeyStore>..\..\mazeledazzle.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>mazeledazzle</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>210889alex</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>210889alex</AndroidSigningStorePass>
+	</PropertyGroup>
+
 	<!-- Android Release Signing Configuration -->
 	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net9.0-android'">
 		<AndroidKeyStore>true</AndroidKeyStore>
