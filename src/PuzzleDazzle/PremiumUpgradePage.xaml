@@ -96,17 +96,19 @@
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Gray900}" />
-                    <Label Grid.Column="1"
-                           Text="$0.99"
+                    <Label x:Name="MonthlyPriceLabel"
+                           Grid.Column="1"
+                           Text="..."
                            FontSize="22"
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Primary}" />
                     <Label Grid.Row="1"
-                           Text="Billed monthly, no auto-renew"
+                           Text="Billed monthly, auto-renewable"
                            FontSize="13"
                            TextColor="{DynamicResource Gray500}" />
-                    <Label Grid.Row="1" Grid.Column="1"
-                           Text="/month"
+                    <Label x:Name="MonthlyPeriodLabel"
+                           Grid.Row="1" Grid.Column="1"
+                           Text=""
                            FontSize="13"
                            TextColor="{DynamicResource Gray500}"
                            HorizontalTextAlignment="End" />
@@ -138,17 +140,19 @@
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Gray900}" />
-                    <Label Grid.Column="1"
-                           Text="$9.99"
+                    <Label x:Name="AnnualPriceLabel"
+                           Grid.Column="1"
+                           Text="..."
                            FontSize="22"
                            FontAttributes="Bold"
                            TextColor="{DynamicResource Secondary}" />
                     <Label Grid.Row="1"
-                           Text="Billed yearly, no auto-renew"
+                           Text="Billed yearly, auto-renewable"
                            FontSize="13"
                            TextColor="{DynamicResource Gray500}" />
-                    <Label Grid.Row="1" Grid.Column="1"
-                           Text="/year"
+                    <Label x:Name="AnnualPeriodLabel"
+                           Grid.Row="1" Grid.Column="1"
+                           Text=""
                            FontSize="13"
                            TextColor="{DynamicResource Gray500}"
                            HorizontalTextAlignment="End" />
@@ -160,7 +164,7 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="4" />
                         </Border.StrokeShape>
-                        <Label Text="Save 16%"
+                        <Label Text="Best Value"
                                FontSize="12"
                                FontAttributes="Bold"
                                TextColor="White" />

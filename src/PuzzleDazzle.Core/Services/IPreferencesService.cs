@@ -10,4 +10,6 @@ public interface IPreferencesService
 	void SetInt(string key, int value);
 	string GetString(string key, string defaultValue);
 	void SetString(string key, string value);
+	bool GetBool(string key, bool defaultValue);
+	void SetBool(string key, bool value);
 }

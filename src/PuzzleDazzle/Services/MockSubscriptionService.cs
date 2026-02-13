@@ -32,4 +32,22 @@ public class MockSubscriptionService : ISubscriptionService
 		// Mock implementation does nothing
 		return Task.CompletedTask;
 	}
+
+	public Task<(SubscriptionInfo? Monthly, SubscriptionInfo? Yearly)> GetSubscriptionInfoAsync()
+	{
+		// Return mock pricing for UI development
+		var monthly = new SubscriptionInfo
+		{
+			ProductId = ISubscriptionService.ProductIdMonthly,
+			FormattedPrice = "$0.99",
+			BillingPeriod = "month"
+		};
+		var yearly = new SubscriptionInfo
+		{
+			ProductId = ISubscriptionService.ProductIdYearly,
+			FormattedPrice = "$9.99",
+			BillingPeriod = "year"
+		};
+		return Task.FromResult<(SubscriptionInfo? Monthly, SubscriptionInfo? Yearly)>((monthly, yearly));
+	}
 }

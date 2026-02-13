@@ -18,6 +18,9 @@ public static class MauiProgram
 				fonts.AddFont("fa-solid-900.ttf", "FontAwesome");
 			});
 
+		// Register shared services
+		builder.Services.AddSingleton<IPreferencesService, MauiPreferencesService>();
+
 #if DEBUG
 		builder.Logging.AddDebug();
 		

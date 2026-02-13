@@ -20,6 +20,12 @@ public class InMemoryPreferencesService : IPreferencesService
 
 	public void SetString(string key, string value)
 		=> _store[key] = value;
+
+	public bool GetBool(string key, bool defaultValue)
+		=> _store.TryGetValue(key, out var val) ? (bool)val : defaultValue;
+
+	public void SetBool(string key, bool value)
+		=> _store[key] = value;
 }
 
 /// <summary>
@@ -30,6 +36,13 @@ public class TestSubscriptionService : ISubscriptionService
 	public bool IsPremium { get; set; } = false;
 
 	public Task<bool> IsPremiumAsync() => Task.FromResult(IsPremium);
+
+	public Task<bool> PurchaseSubscriptionAsync(string productId) => Task.FromResult(false);
+
+	public Task RefreshSubscriptionStatusAsync() => Task.CompletedTask;
+
+	public Task<(SubscriptionInfo? Monthly, SubscriptionInfo? Yearly)> GetSubscriptionInfoAsync()
+		=> Task.FromResult<(SubscriptionInfo? Monthly, SubscriptionInfo? Yearly)>((null, null));
 }
 
 public class UsageTrackingServiceTests
