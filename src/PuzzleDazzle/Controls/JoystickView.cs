@@ -78,11 +78,10 @@ public class JoystickView : GraphicsView
 		if (distSq <= deadRadius * deadRadius)
 			return null;
 
-		// atan2 gives angle from positive-X axis, counter-clockwise, in radians.
-		// Convert to clockwise-from-top degrees:
-		//   clockwiseDeg = (90 - atan2Deg + 360) % 360
-		double atan2Deg = Math.Atan2(dy, dx) * (180.0 / Math.PI);
-		double angle = (90.0 - atan2Deg + 360.0) % 360.0;
+		// atan2(dx, -dy) gives the clockwise angle from the top (12 o'clock = 0°) directly,
+		// because screen y-axis points downward: top tap → dy<0 → -dy>0 → angle near 0°.
+		double angle = Math.Atan2(dx, -dy) * (180.0 / Math.PI);
+		if (angle < 0) angle += 360.0;
 
 		// Map angle to direction
 		if (angle < 45.0 || angle >= 315.0)
