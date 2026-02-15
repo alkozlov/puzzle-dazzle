@@ -11,8 +11,8 @@
     <!-- Root grid: maze area fills all space, controls overlay on top -->
     <Grid>
 
-        <!-- Maze fills the entire page -->
-        <controls:PlayMazeView x:Name="PlayMazeView" />
+        <!-- Maze fills the entire page, with vertical padding to avoid edge bleed -->
+        <controls:PlayMazeView x:Name="PlayMazeView" Margin="0,12,0,12" />
 
         <!-- Top-right: Exit button -->
         <Button x:Name="ExitButton"

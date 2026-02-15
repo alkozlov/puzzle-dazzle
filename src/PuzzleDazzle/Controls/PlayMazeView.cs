@@ -48,8 +48,14 @@ public class PlayMazeView : GraphicsView
 		public MazeCell? PlayerCell { get; set; }
 		public IReadOnlyList<MazeCell>? Path { get; set; }
 
-		// Light-blue path color — visible but not distracting
-		private static readonly Color PathColor = Color.FromArgb("#80ADD8E6");
+		// Path color: hue is light blue, alpha controls brightness independently.
+		// Increase PathAlpha to make the path more visible (0.0 = invisible, 1.0 = fully opaque).
+		private const float PathHueR = 0xAD / 255f; // #ADD8E6 — light blue
+		private const float PathHueG = 0xD8 / 255f;
+		private const float PathHueB = 0xE6 / 255f;
+		private const float PathAlpha = 1.0f;        // doubled from 0.5 → fully opaque
+		private static readonly Color PathColor = Color.FromRgba(PathHueR, PathHueG, PathHueB, PathAlpha);
+
 		private static readonly Color PlayerColor = Color.FromArgb("#1565C0"); // dark blue
 
 		public PlayMazeDrawable(ClassicMazeRenderer renderer)
