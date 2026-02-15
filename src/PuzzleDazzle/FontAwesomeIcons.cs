@@ -47,4 +47,5 @@ public static class FontAwesomeIcons
 	public const string PuzzlePiece = "\uf12e";    // Puzzle piece
 	public const string TableCells = "\uf00a";     // Grid
 	public const string Star = "\uf005";           // Star (for favorites)
+	public const string DoorOpen = "\uf52b";       // Door open (enter play mode)
 }

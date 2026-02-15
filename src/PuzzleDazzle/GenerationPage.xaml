@@ -55,19 +55,44 @@
             </StackLayout>
 
             <!-- Maze Display Area -->
-            <Border x:Name="MazeDisplayArea"
-                    IsVisible="False"
-                    StrokeThickness="0"
-                    BackgroundColor="White"
-                    Padding="4"
-                    Margin="4">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="0" />
-                </Border.StrokeShape>
+            <Grid x:Name="MazeDisplayArea" IsVisible="False">
 
-                <!-- Actual maze visualization -->
-                <controls:MazeView x:Name="MazeView" />
-            </Border>
+                <Border StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="4"
+                        Margin="4">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0" />
+                    </Border.StrokeShape>
+
+                    <!-- Actual maze visualization -->
+                    <controls:MazeView x:Name="MazeView" />
+                </Border>
+
+                <!-- Play button overlay (lower-right corner) -->
+                <Button x:Name="PlayButton"
+                        Text="{x:Static local:FontAwesomeIcons.DoorOpen}"
+                        FontFamily="FontAwesome"
+                        FontSize="22"
+                        WidthRequest="52"
+                        HeightRequest="52"
+                        CornerRadius="26"
+                        BackgroundColor="{DynamicResource Primary}"
+                        TextColor="White"
+                        HorizontalOptions="End"
+                        VerticalOptions="End"
+                        Margin="0,0,16,16"
+                        Clicked="OnPlayClicked"
+                        SemanticProperties.Hint="Play this maze">
+                    <Button.Shadow>
+                        <Shadow Brush="Black"
+                                Opacity="0.25"
+                                Radius="8"
+                                Offset="0,3" />
+                    </Button.Shadow>
+                </Button>
+
+            </Grid>
         </Grid>
 
         <!-- Bottom Button Panel -->

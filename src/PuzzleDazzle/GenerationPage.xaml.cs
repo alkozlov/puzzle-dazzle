@@ -218,6 +218,12 @@ public partial class GenerationPage : ContentPage
 		}
 	}
 
+	private async void OnPlayClicked(object? sender, EventArgs e)
+	{
+		if (_currentMaze == null) return;
+		await Navigation.PushAsync(new MazePlayPage(_currentMaze));
+	}
+
 	private async void OnSettingsClicked(object? sender, EventArgs e)
 	{
 		// Navigate to Settings Screen
