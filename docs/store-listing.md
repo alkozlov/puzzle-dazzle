@@ -6,30 +6,43 @@ This document contains all the text and metadata for the Google Play Store listi
 **Mazele Dazzle - Maze Generator**
 
 ## Short Description (80 characters max)
-Create and share custom mazes. Perfect for puzzles, education, and fun!
+Generate & play custom mazes. 4 shapes, 3 sizes, save and share!
 
 ## Full Description (4000 characters max)
 
-**Generate beautiful mazes in seconds!**
+**Generate beautiful mazes and play them in seconds!**
 
-Mazele Dazzle is a simple and fun app for creating custom mazes. Whether you're looking for a quick puzzle to solve, educational materials for students, or just want to create something creative to share with friends - Mazele Dazzle has you covered.
+Mazele Dazzle is a fun and creative app for generating custom mazes and solving them interactively. Whether you want a quick puzzle to play, educational materials for students, or something creative to share with friends — Mazele Dazzle has you covered.
 
 **KEY FEATURES:**
 
-🎨 **Multiple Visualization Styles**
-- Classic black and white mazes
-- Soft gradient mazes with smooth colors
-- More styles coming soon!
+🔷 **4 Unique Maze Shapes**
+- Rectangle — the classic grid maze
+- Circle — a round maze for a fresh challenge
+- Diamond — angular and sharp
+- Heart — a maze shaped like a heart, perfect for gifting
 
 ⚙️ **Customizable Generation**
-- Choose your maze size (from small to large)
-- Adjust difficulty level
-- Generate unique mazes every time
+- 3 maze sizes: Small (10×10), Medium (20×20), Large (30×30)
+- 3 difficulty levels: Easy, Medium, Hard
+- Every maze is uniquely generated — no two are the same!
+
+🕹️ **Interactive Play Mode**
+- Solve your maze right inside the app
+- Virtual joystick with 4-directional control
+- Your path is drawn as you go, so you never lose your place
+- Live timer tracks how fast you solve it
+- Celebrate your finish with a fun animated emoji!
+- Full landscape orientation for the best play experience
+
+🔍 **Zoom & Pan**
+- Pinch to zoom in up to 4× on large mazes
+- Two-finger pan to explore every corner
 
 💾 **Save and Share**
-- Save mazes as PNG images to your device
-- Share directly via social media and messaging apps
-- Perfect for puzzles, games, and creative projects
+- Save mazes as PNG images to your device gallery
+- Share directly via any social media or messaging app
+- Clean image output with white margins for a polished look
 
 🎯 **Perfect For:**
 - Puzzle enthusiasts who love a challenge
@@ -39,20 +52,20 @@ Mazele Dazzle is a simple and fun app for creating custom mazes. Whether you're 
 
 **SIMPLE AND INTUITIVE**
 
-No complicated settings or confusing menus. Just select your preferences and tap Start to generate a unique maze instantly. The clean, modern interface makes it easy for users of all ages.
+No complicated settings or confusing menus. Just pick your shape, size, and difficulty — then tap Start to generate a unique maze instantly. The clean, modern interface works great for all ages.
 
 **FREE TO USE**
 
-Start generating mazes right away with our free tier:
+Start generating and playing mazes right away with our free tier:
 - Generate up to 5 mazes per day
-- Access to all visualization styles
+- Access to all shapes, sizes, and difficulty levels
 - Save and share your creations
+- Full play mode access
 
 **PREMIUM SUBSCRIPTION** (Optional)
 
 Unlock unlimited creativity with Mazele Dazzle Premium:
-- Unlimited maze generation
-- No daily limits
+- Unlimited maze generation — no daily limits
 - Support future development and new features
 
 Subscription: $0.99/month or $9.99/year
@@ -64,20 +77,20 @@ Subscription: $0.99/month or $9.99/year
 We respect your privacy. Mazele Dazzle:
 - Does not collect personal information
 - Does not require account registration for basic use
-- Only uses minimal permissions needed for saving images
+- Only requests the permissions needed to save images to your gallery
 - See our privacy policy for full details
 
 **SUPPORT**
 
-Have questions or feedback? Contact us through the app or visit our website.
+Have questions or feedback? Contact us at mazele.dazzle.app@gmail.com
 
-Start creating amazing mazes today with Mazele Dazzle!
+Start creating and solving amazing mazes today with Mazele Dazzle!
 
 ---
 
 ## Keywords / Tags (comma-separated)
 
-maze generator, maze maker, puzzle game, brain teaser, logic puzzle, educational game, maze creator, puzzle maker, labyrinth, kids puzzle, maze builder, puzzle app, creative games, mind games, brain training
+maze generator, maze maker, maze game, puzzle game, brain teaser, logic puzzle, educational game, maze creator, labyrinth, kids puzzle, maze builder, puzzle app, interactive maze, maze solver, mind games, brain training, heart maze, circle maze
 
 ## Category
 
@@ -98,7 +111,7 @@ https://mazeledazzle.app/privacy-policy (placeholder - needs to be created)
 
 ## Contact Email
 
-mazele.dazzle.app@gmail.com (placeholder - update with your email)
+mazele.dazzle.app@gmail.com (placeholder - update with your actual email)
 
 ## Website (optional)
 
@@ -110,26 +123,25 @@ https://mazeledazzle.app (placeholder - can be created later)
 
 You'll need 2-8 screenshots showing:
 
-1. **Generation Screen** - Main screen with maze and controls
-2. **Settings Screen** - Configuration options (size, difficulty, style)
-3. **Maze Examples** - Different visualization styles:
-   - Classic style maze
-   - Soft style maze
-4. **Save Dialog** - Showing save confirmation
-5. **Premium Screen** - Subscription/upgrade screen (optional for initial release)
+1. **Generation Screen** - Main screen with a generated maze and action buttons (play, save, share, regenerate)
+2. **Settings Screen** - Configuration panel: shape selector (Rectangle/Circle/Diamond/Heart), size, difficulty
+3. **Shape Examples** - Different maze shapes side by side (Heart or Circle maze looks great here)
+4. **Play Mode** - Joystick screen with active path drawn in the maze
+5. **Completion Screen** - Animated emoji celebration + timer result
+6. **Premium Screen** - Subscription/upgrade screen (optional for initial release)
 
 **Requirements**:
 - Format: PNG or JPEG
 - Minimum dimension: 320px
 - Maximum dimension: 3840px
 - Aspect ratio: 16:9 or 9:16 recommended
-- Take screenshots on phone, then you can add frames/text in design tools
+- Screenshots 1–3: portrait (9:16); Screenshot 4–5: landscape (16:9, since play mode is landscape)
 
 ---
 
 ## Feature Graphic (Required)
 
-**Dimensions**: 1024 x 500 pixels
+**Dimensions**: 1024 × 500 pixels
 **Format**: PNG or JPEG
 **File size**: Max 1 MB
 
@@ -137,8 +149,8 @@ This is the banner image that appears at the top of your store listing.
 
 **Design suggestions**:
 - App name "Mazele Dazzle"
-- Tagline: "Create Beautiful Mazes"
-- Maze visual element
+- Tagline: "Generate. Play. Share."
+- Show two or three maze shapes side by side (e.g., Heart + Circle + Rectangle)
 - App icon
 - Colorful, eye-catching design
 
@@ -163,8 +175,8 @@ Can be created in:
 
 Not required for initial release, but can improve conversion:
 - 30 seconds to 2 minutes
-- Show app in action
-- Highlight key features
+- Show maze generation, shape selection, and play mode in action
+- Highlight the joystick controls and completion celebration
 - Can be added after launch
 
 ---
@@ -172,10 +184,10 @@ Not required for initial release, but can improve conversion:
 ## Next Steps
 
 1. ✅ App title and descriptions written above
-2. ⏳ Take screenshots of the app on your phone
-3. ⏳ Create feature graphic (1024x500px banner)
+2. ⏳ Take screenshots of the app on your phone (portrait + landscape)
+3. ⏳ Create feature graphic (1024×500px banner)
 4. ⏳ Create privacy policy (required)
-5. ⏳ Set up email for support contact
+5. ⏳ Set up support email
 6. ⏳ Upload to Google Play Console
 
 ---
@@ -183,7 +195,8 @@ Not required for initial release, but can improve conversion:
 ## Important Notes
 
 - All text is in English. You may want to add translations later (Polish, Russian, etc.)
-- Screenshots should show the app looking its best
-- Feature graphic is your first impression - make it count!
+- Screenshots should show the app at its best — use a Heart or Circle maze for visual impact
+- Play mode screenshots should be in landscape orientation (the app locks to landscape during play)
+- Feature graphic is your first impression — make it count!
 - Privacy policy is REQUIRED by Google Play
 - Content rating questionnaire must be completed honestly
