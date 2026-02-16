@@ -48,4 +48,25 @@ public static class FontAwesomeIcons
 	public const string TableCells = "\uf00a";     // Grid
 	public const string Star = "\uf005";           // Star (for favorites)
 	public const string DoorOpen = "\uf52b";       // Door open (enter play mode)
+
+	// Maze Size Toggle Buttons
+	public const string SizeSmall = "\uf78c";      // Compress arrows (small)
+	public const string SizeMedium = "\uf0c8";     // Square (medium)
+	public const string SizeLarge = "\uf065";      // Expand arrows (large)
+
+	// Maze Difficulty Toggle Buttons (face icons, kept for potential reuse)
+	public const string FaceSmile = "\uf118";      // Smiling face
+	public const string FaceMeh = "\uf11a";        // Neutral face
+	public const string FaceFrown = "\uf119";      // Frowning face
+
+	// Maze Difficulty Toggle Buttons (star rating)
+	public const string DifficultyEasy = "\uf005";               // 1 star
+	public const string DifficultyMedium = "\uf005 \uf005";      // 2 stars
+	public const string DifficultyHard = "\uf005 \uf005 \uf005"; // 3 stars
+
+	// Maze Shape Toggle Buttons
+	public const string ShapeSquare = "\uf0c8";    // Square (rectangle)
+	public const string ShapeCircle = "\uf111";    // Circle
+	public const string ShapeDiamond = "\uf219";   // Diamond
+	public const string ShapeHeart = "\uf004";     // Heart
 }

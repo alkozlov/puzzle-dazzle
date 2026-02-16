@@ -6,26 +6,64 @@
              Title="Settings"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
+    <ContentPage.Resources>
+        <Style x:Key="ToggleButtonUnselected" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Gray200}" />
+            <Setter Property="TextColor" Value="{DynamicResource Gray700}" />
+            <Setter Property="FontFamily" Value="FontAwesome" />
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="WidthRequest" Value="80" />
+            <Setter Property="HeightRequest" Value="80" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        <Style x:Key="ToggleButtonSelected" TargetType="Button" BasedOn="{StaticResource ToggleButtonUnselected}">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Primary}" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
+        <!-- Difficulty buttons keep stars yellow in both states -->
+        <Style x:Key="DifficultyToggleButtonUnselected" TargetType="Button" BasedOn="{StaticResource ToggleButtonUnselected}">
+            <Setter Property="TextColor" Value="{DynamicResource Tertiary}" />
+        </Style>
+        <Style x:Key="DifficultyToggleButtonSelected" TargetType="Button" BasedOn="{StaticResource ToggleButtonSelected}">
+            <Setter Property="TextColor" Value="{DynamicResource Tertiary}" />
+        </Style>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="25">
-            
+
             <!-- Maze Size Section -->
             <StackLayout Spacing="10">
                 <Label Text="Maze Size"
                        FontSize="20"
                        FontAttributes="Bold"
                        TextColor="{DynamicResource Primary}" />
-                
-                <Picker x:Name="SizePicker"
-                        Title="Select maze size"
-                        FontSize="16"
-                        SelectedIndexChanged="OnSizeChanged">
-                    <Picker.Items>
-                        <x:String>Small (10x10)</x:String>
-                        <x:String>Medium (20x20)</x:String>
-                        <x:String>Large (30x30)</x:String>
-                    </Picker.Items>
-                </Picker>
+
+                <FlexLayout Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="Start">
+                    <Button x:Name="SizeSmallButton"
+                            Text="{x:Static local:FontAwesomeIcons.ShapeSquare}"
+                            Style="{StaticResource ToggleButtonUnselected}"
+                            FontSize="16"
+                            Clicked="OnSizeSmallClicked"
+                            SemanticProperties.Hint="Small maze (10x10)" />
+                    <Button x:Name="SizeMediumButton"
+                            Text="{x:Static local:FontAwesomeIcons.ShapeSquare}"
+                            Style="{StaticResource ToggleButtonUnselected}"
+                            FontSize="26"
+                            Clicked="OnSizeMediumClicked"
+                            SemanticProperties.Hint="Medium maze (20x20)" />
+                    <Button x:Name="SizeLargeButton"
+                            Text="{x:Static local:FontAwesomeIcons.ShapeSquare}"
+                            Style="{StaticResource ToggleButtonUnselected}"
+                            FontSize="38"
+                            Clicked="OnSizeLargeClicked"
+                            SemanticProperties.Hint="Large maze (30x30)" />
+                </FlexLayout>
             </StackLayout>
 
             <!-- Difficulty Section -->
@@ -34,17 +72,29 @@
                        FontSize="20"
                        FontAttributes="Bold"
                        TextColor="{DynamicResource Primary}" />
-                
-                <Picker x:Name="DifficultyPicker"
-                        Title="Select difficulty"
-                        FontSize="16"
-                        SelectedIndexChanged="OnDifficultyChanged">
-                    <Picker.Items>
-                        <x:String>Easy</x:String>
-                        <x:String>Medium</x:String>
-                        <x:String>Hard</x:String>
-                    </Picker.Items>
-                </Picker>
+
+                <FlexLayout Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="Start">
+                    <Button x:Name="DifficultyEasyButton"
+                            Text="{x:Static local:FontAwesomeIcons.DifficultyEasy}"
+                            Style="{StaticResource DifficultyToggleButtonUnselected}"
+                            FontSize="20"
+                            Clicked="OnDifficultyEasyClicked"
+                            SemanticProperties.Hint="Easy difficulty (1 star)" />
+                    <Button x:Name="DifficultyMediumButton"
+                            Text="{x:Static local:FontAwesomeIcons.DifficultyMedium}"
+                            Style="{StaticResource DifficultyToggleButtonUnselected}"
+                            FontSize="20"
+                            Clicked="OnDifficultyMediumClicked"
+                            SemanticProperties.Hint="Medium difficulty (2 stars)" />
+                    <Button x:Name="DifficultyHardButton"
+                            Text="{x:Static local:FontAwesomeIcons.DifficultyHard}"
+                            Style="{StaticResource DifficultyToggleButtonUnselected}"
+                            FontSize="20"
+                            Clicked="OnDifficultyHardClicked"
+                            SemanticProperties.Hint="Hard difficulty (3 stars)" />
+                </FlexLayout>
             </StackLayout>
 
             <!-- Shape Section -->
@@ -57,18 +107,31 @@
                        FontSize="13"
                        TextColor="{DynamicResource Gray500}"
                        Margin="0,-5,0,0" />
-                
-                <Picker x:Name="ShapePicker"
-                        Title="Select shape"
-                        FontSize="16"
-                        SelectedIndexChanged="OnShapeChanged">
-                    <Picker.Items>
-                        <x:String>Rectangle</x:String>
-                        <x:String>Circle</x:String>
-                        <x:String>Diamond</x:String>
-                        <x:String>Heart</x:String>
-                    </Picker.Items>
-                </Picker>
+
+                <FlexLayout Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="Start">
+                    <Button x:Name="ShapeRectangleButton"
+                            Text="{x:Static local:FontAwesomeIcons.ShapeSquare}"
+                            Style="{StaticResource ToggleButtonUnselected}"
+                            Clicked="OnShapeRectangleClicked"
+                            SemanticProperties.Hint="Rectangle shape" />
+                    <Button x:Name="ShapeCircleButton"
+                            Text="{x:Static local:FontAwesomeIcons.ShapeCircle}"
+                            Style="{StaticResource ToggleButtonUnselected}"
+                            Clicked="OnShapeCircleClicked"
+                            SemanticProperties.Hint="Circle shape" />
+                    <Button x:Name="ShapeDiamondButton"
+                            Text="{x:Static local:FontAwesomeIcons.ShapeDiamond}"
+                            Style="{StaticResource ToggleButtonUnselected}"
+                            Clicked="OnShapeDiamondClicked"
+                            SemanticProperties.Hint="Diamond shape" />
+                    <Button x:Name="ShapeHeartButton"
+                            Text="{x:Static local:FontAwesomeIcons.ShapeHeart}"
+                            Style="{StaticResource ToggleButtonUnselected}"
+                            Clicked="OnShapeHeartClicked"
+                            SemanticProperties.Hint="Heart shape" />
+                </FlexLayout>
             </StackLayout>
 
             <!-- Upgrade to Premium -->
