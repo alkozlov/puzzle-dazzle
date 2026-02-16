@@ -63,45 +63,48 @@
               IsVisible="False"
               BackgroundColor="#CC000000">
 
-            <VerticalStackLayout HorizontalOptions="Center"
-                                 VerticalOptions="Center"
-                                 Spacing="16"
-                                 Padding="32,32,32,48">
+            <ScrollView VerticalOptions="Fill"
+                        HorizontalOptions="Fill">
+                <VerticalStackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                     Spacing="16"
+                                     Padding="32,32,32,80">
 
-                <!-- Animated emoji canvas -->
-                <controls:EmojiAnimationView x:Name="EmojiAnimation"
-                                             WidthRequest="160"
-                                             HeightRequest="160"
-                                             HorizontalOptions="Center" />
+                    <!-- Animated emoji canvas -->
+                    <controls:EmojiAnimationView x:Name="EmojiAnimation"
+                                                 WidthRequest="160"
+                                                 HeightRequest="160"
+                                                 HorizontalOptions="Center" />
 
-                <!-- Congratulations text -->
-                <Label Text="You did it! 🎉"
-                       FontSize="28"
-                       FontAttributes="Bold"
-                       TextColor="White"
-                       HorizontalTextAlignment="Center" />
+                    <!-- Congratulations text -->
+                    <Label Text="You did it! 🎉"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center" />
 
-                <!-- Time label -->
-                <Label x:Name="CompletionTimeLabel"
-                       FontSize="20"
-                       TextColor="#FFD700"
-                       HorizontalTextAlignment="Center" />
+                    <!-- Time label -->
+                    <Label x:Name="CompletionTimeLabel"
+                           FontSize="20"
+                           TextColor="#FFD700"
+                           HorizontalTextAlignment="Center" />
 
-                <!-- Continue button (icon only — circle check) -->
-                <Button Text="{x:Static local:FontAwesomeIcons.CircleCheck}"
-                        FontFamily="FontAwesome"
-                        FontSize="32"
-                        WidthRequest="68"
-                        HeightRequest="68"
-                        CornerRadius="34"
-                        BackgroundColor="{DynamicResource Primary}"
-                        TextColor="White"
-                        Padding="0"
-                        HorizontalOptions="Center"
-                        Clicked="OnContinueClicked"
-                        SemanticProperties.Hint="Continue" />
+                    <!-- Continue button (icon only — circle check) -->
+                    <Button Text="{x:Static local:FontAwesomeIcons.CircleCheck}"
+                            FontFamily="FontAwesome"
+                            FontSize="32"
+                            WidthRequest="68"
+                            HeightRequest="68"
+                            CornerRadius="34"
+                            BackgroundColor="{DynamicResource Primary}"
+                            TextColor="White"
+                            Padding="0"
+                            HorizontalOptions="Center"
+                            Clicked="OnContinueClicked"
+                            SemanticProperties.Hint="Continue" />
 
-            </VerticalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
 
         </Grid>
 
