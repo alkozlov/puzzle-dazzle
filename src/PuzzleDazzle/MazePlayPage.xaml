@@ -66,7 +66,7 @@
             <VerticalStackLayout HorizontalOptions="Center"
                                  VerticalOptions="Center"
                                  Spacing="16"
-                                 Padding="32">
+                                 Padding="32,32,32,48">
 
                 <!-- Animated emoji canvas -->
                 <controls:EmojiAnimationView x:Name="EmojiAnimation"
@@ -87,17 +87,19 @@
                        TextColor="#FFD700"
                        HorizontalTextAlignment="Center" />
 
-                <!-- Continue button -->
-                <Button Text="Continue"
-                        FontSize="16"
-                        FontAttributes="Bold"
-                        WidthRequest="160"
-                        HeightRequest="48"
-                        CornerRadius="24"
+                <!-- Continue button (icon only — circle check) -->
+                <Button Text="{x:Static local:FontAwesomeIcons.CircleCheck}"
+                        FontFamily="FontAwesome"
+                        FontSize="32"
+                        WidthRequest="68"
+                        HeightRequest="68"
+                        CornerRadius="34"
                         BackgroundColor="{DynamicResource Primary}"
                         TextColor="White"
+                        Padding="0"
                         HorizontalOptions="Center"
-                        Clicked="OnContinueClicked" />
+                        Clicked="OnContinueClicked"
+                        SemanticProperties.Hint="Continue" />
 
             </VerticalStackLayout>
 

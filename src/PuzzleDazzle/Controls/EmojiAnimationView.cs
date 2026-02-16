@@ -8,7 +8,8 @@ namespace PuzzleDazzle.Controls;
 /// </summary>
 public class EmojiAnimationView : GraphicsView
 {
-	private const string Emoji = "🐸";
+	private static readonly string[] Emojis = { "🐸", "🐱", "🐶", "🐰", "🐼" };
+	private static readonly Random Rng = new();
 	private const double MinScale = 0.75;
 	private const double MaxScale = 1.15;
 	private const double CycleDurationSeconds = 0.9; // one full bounce period
@@ -23,9 +24,10 @@ public class EmojiAnimationView : GraphicsView
 		Drawable = _drawable;
 	}
 
-	/// <summary>Starts the animation loop.</summary>
+	/// <summary>Starts the animation loop with a randomly chosen animal emoji.</summary>
 	public void StartAnimation()
 	{
+		_drawable.Emoji = Emojis[Rng.Next(Emojis.Length)];
 		_startTime = DateTime.UtcNow;
 		_timer = Dispatcher.CreateTimer();
 		_timer.Interval = TimeSpan.FromMilliseconds(16); // ~60 fps
@@ -54,6 +56,7 @@ public class EmojiAnimationView : GraphicsView
 	private class EmojiDrawable : IDrawable
 	{
 		public double Scale { get; set; } = 1.0;
+		public string Emoji { get; set; } = "🐸";
 
 		public void Draw(ICanvas canvas, RectF rect)
 		{

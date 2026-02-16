@@ -71,9 +71,8 @@
 
                 <!-- Play button overlay (lower-right corner) -->
                 <Button x:Name="PlayButton"
-                        Text="{x:Static local:FontAwesomeIcons.DoorOpen}"
-                        FontFamily="FontAwesome"
-                        FontSize="22"
+                        Text="🐸"
+                        FontSize="24"
                         WidthRequest="52"
                         HeightRequest="52"
                         CornerRadius="26"
@@ -82,6 +81,7 @@
                         HorizontalOptions="End"
                         VerticalOptions="End"
                         Margin="0,0,16,16"
+                        Padding="0"
                         Clicked="OnPlayClicked"
                         SemanticProperties.Hint="Play this maze">
                     <Button.Shadow>
@@ -153,7 +153,7 @@
                 
                 <!-- Generate Button (Center, Primary, Larger) -->
                 <Button Grid.Column="4"
-                        Text="{x:Static local:FontAwesomeIcons.Play}"
+                        Text="{x:Static local:FontAwesomeIcons.TableCells}"
                         FontFamily="FontAwesome"
                         FontSize="32"
                         WidthRequest="72"
