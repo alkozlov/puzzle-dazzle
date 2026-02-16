@@ -64,6 +64,10 @@ public partial class MazePlayPage : ContentPage
 		_path.Clear();
 		_path.Add(_playerCell);
 		PlayMazeView.UpdatePlayerState(_playerCell, _path);
+
+		// Ensure completion overlay is hidden
+		EmojiAnimation.StopAnimation();
+		CompletionOverlay.IsVisible = false;
 	}
 
 	// ── Timer ─────────────────────────────────────────────────────────────────
@@ -161,17 +165,22 @@ public partial class MazePlayPage : ContentPage
 
 	// ── Completion ────────────────────────────────────────────────────────────
 
-	private async void OnMazeCompleted()
+	private void OnMazeCompleted()
 	{
 		_completed = true;
 		_timer.Stop();
 
 		string timeText = _elapsed.ToString(@"mm\:ss");
-		await DisplayAlert(
-			"Maze Complete!",
-			$"You solved the maze in {timeText}.",
-			"OK");
+		CompletionTimeLabel.Text = $"Your time: {timeText}";
 
+		CompletionOverlay.IsVisible = true;
+		EmojiAnimation.StartAnimation();
+	}
+
+	private async void OnContinueClicked(object? sender, EventArgs e)
+	{
+		EmojiAnimation.StopAnimation();
+		CompletionOverlay.IsVisible = false;
 		await Navigation.PopAsync();
 	}
 

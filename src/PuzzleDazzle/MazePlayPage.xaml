@@ -14,26 +14,27 @@
         <!-- Maze fills the entire page, with vertical padding to avoid edge bleed -->
         <controls:PlayMazeView x:Name="PlayMazeView" Margin="0,12,0,12" />
 
-        <!-- Top-right: Exit button -->
+        <!-- Top-left: Back/exit button (icon only) -->
         <Button x:Name="ExitButton"
-                Text="Exit"
-                FontSize="14"
-                FontAttributes="Bold"
-                WidthRequest="72"
-                HeightRequest="40"
-                CornerRadius="20"
+                Text="{x:Static local:FontAwesomeIcons.ArrowLeft}"
+                FontFamily="FontAwesome"
+                FontSize="20"
+                WidthRequest="44"
+                HeightRequest="44"
+                CornerRadius="22"
                 BackgroundColor="#CC333333"
                 TextColor="White"
-                HorizontalOptions="End"
+                HorizontalOptions="Start"
                 VerticalOptions="Start"
-                Margin="0,16,16,0"
+                Margin="16,16,0,0"
+                Padding="0"
                 Clicked="OnExitClicked"
                 SemanticProperties.Hint="Exit play mode" />
 
-        <!-- Top-left: Timer label -->
-        <Border HorizontalOptions="Start"
+        <!-- Top-right: Timer label -->
+        <Border HorizontalOptions="End"
                 VerticalOptions="Start"
-                Margin="16,16,0,0"
+                Margin="0,16,16,0"
                 BackgroundColor="#CC333333"
                 StrokeThickness="0"
                 Padding="12,6">
@@ -56,6 +57,51 @@
                                WidthRequest="160"
                                HeightRequest="160"
                                DirectionTapped="OnJoystickDirectionTapped" />
+
+        <!-- Completion overlay (hidden until maze is solved) -->
+        <Grid x:Name="CompletionOverlay"
+              IsVisible="False"
+              BackgroundColor="#CC000000">
+
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Spacing="16"
+                                 Padding="32">
+
+                <!-- Animated emoji canvas -->
+                <controls:EmojiAnimationView x:Name="EmojiAnimation"
+                                             WidthRequest="160"
+                                             HeightRequest="160"
+                                             HorizontalOptions="Center" />
+
+                <!-- Congratulations text -->
+                <Label Text="You did it! 🎉"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center" />
+
+                <!-- Time label -->
+                <Label x:Name="CompletionTimeLabel"
+                       FontSize="20"
+                       TextColor="#FFD700"
+                       HorizontalTextAlignment="Center" />
+
+                <!-- Continue button -->
+                <Button Text="Continue"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        WidthRequest="160"
+                        HeightRequest="48"
+                        CornerRadius="24"
+                        BackgroundColor="{DynamicResource Primary}"
+                        TextColor="White"
+                        HorizontalOptions="Center"
+                        Clicked="OnContinueClicked" />
+
+            </VerticalStackLayout>
+
+        </Grid>
 
     </Grid>
 
