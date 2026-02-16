@@ -42,8 +42,47 @@ public partial class MazePlayPage : ContentPage
 	{
 		base.OnAppearing();
 		LockLandscape();
+		ApplyBottomInset();
 		ResetPlayState();
 		_timer.Start();
+	}
+
+	/// <summary>
+	/// Reads the system bottom inset (gesture nav bar height) and adds it as
+	/// extra bottom padding on the completion content so the button is never hidden.
+	/// </summary>
+	private void ApplyBottomInset()
+	{
+#if ANDROID
+		var activity = Platform.CurrentActivity;
+		if (activity?.Window?.DecorView.RootWindowInsets is { } insets)
+		{
+			// API 30+: use WindowInsets.Type.systemBars()
+			// API 28-29 fallback: use StableInsetBottom
+			int bottomPx;
+			if (OperatingSystem.IsAndroidVersionAtLeast(30))
+			{
+				var bars = insets.GetInsets(Android.Views.WindowInsets.Type.SystemBars());
+				bottomPx = bars.Bottom;
+			}
+			else
+			{
+#pragma warning disable CA1416
+				bottomPx = insets.StableInsetBottom;
+#pragma warning restore CA1416
+			}
+
+			// Convert px → dp
+			float density = activity.Resources?.DisplayMetrics?.Density ?? 1f;
+			double bottomDp = bottomPx / density;
+
+			// Apply as extra bottom padding on the completion content stack
+			var existing = CompletionContent.Padding;
+			CompletionContent.Padding = new Thickness(
+				existing.Left, existing.Top, existing.Right,
+				existing.Bottom + bottomDp + 16); // +16dp extra breathing room
+		}
+#endif
 	}
 
 	protected override void OnDisappearing()
