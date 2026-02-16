@@ -48,8 +48,9 @@ public partial class MazePlayPage : ContentPage
 	}
 
 	/// <summary>
-	/// Reads the system bottom inset (gesture nav bar height) and adds it as
-	/// extra bottom padding on the completion content so the button is never hidden.
+	/// Reads the system bottom inset (gesture nav bar height) and offsets
+	/// the joystick / exit button so they are not hidden by system bars.
+	/// The completion overlay uses a ScrollView so it needs no special inset handling.
 	/// </summary>
 	private void ApplyBottomInset()
 	{
@@ -57,30 +58,36 @@ public partial class MazePlayPage : ContentPage
 		var activity = Platform.CurrentActivity;
 		if (activity?.Window?.DecorView.RootWindowInsets is { } insets)
 		{
-			// API 30+: use WindowInsets.Type.systemBars()
-			// API 28-29 fallback: use StableInsetBottom
-			int bottomPx;
+			int leftPx, topPx, rightPx, bottomPx;
+
 			if (OperatingSystem.IsAndroidVersionAtLeast(30))
 			{
 				var bars = insets.GetInsets(Android.Views.WindowInsets.Type.SystemBars());
+				leftPx = bars.Left;
+				topPx = bars.Top;
+				rightPx = bars.Right;
 				bottomPx = bars.Bottom;
 			}
 			else
 			{
 #pragma warning disable CA1416
+				leftPx = insets.StableInsetLeft;
+				topPx = insets.StableInsetTop;
+				rightPx = insets.StableInsetRight;
 				bottomPx = insets.StableInsetBottom;
 #pragma warning restore CA1416
 			}
 
 			// Convert px → dp
 			float density = activity.Resources?.DisplayMetrics?.Density ?? 1f;
+			double leftDp = leftPx / density;
+			double topDp = topPx / density;
+			double rightDp = rightPx / density;
 			double bottomDp = bottomPx / density;
 
-			// Apply as extra bottom padding on the completion content stack
-			var existing = CompletionContent.Padding;
-			CompletionContent.Padding = new Thickness(
-				existing.Left, existing.Top, existing.Right,
-				existing.Bottom + bottomDp + 16); // +16dp extra breathing room
+			// Offset play-area controls from system bars
+			Joystick.Margin = new Thickness(16, 0, 16 + rightDp, 16 + bottomDp);
+			ExitButton.Margin = new Thickness(16 + leftDp, 16 + topDp, 0, 0);
 		}
 #endif
 	}
