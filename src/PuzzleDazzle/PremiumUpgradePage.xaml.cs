@@ -1,5 +1,4 @@
 using PuzzleDazzle.Core.Services;
-using PuzzleDazzle.Services;
 
 namespace PuzzleDazzle;
 
@@ -9,13 +8,10 @@ public partial class PremiumUpgradePage : ContentPage
 	private SubscriptionInfo? _monthlyInfo;
 	private SubscriptionInfo? _yearlyInfo;
 
-	public PremiumUpgradePage()
+	public PremiumUpgradePage(ISubscriptionService subscriptionService)
 	{
 		InitializeComponent();
-		
-		// Get subscription service from DI
-		_subscriptionService = App.Current?.Handler?.MauiContext?.Services
-			.GetService<ISubscriptionService>() ?? new MockSubscriptionService();
+		_subscriptionService = subscriptionService;
 	}
 
 	protected override async void OnAppearing()
